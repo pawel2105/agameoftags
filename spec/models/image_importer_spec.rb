@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 def weak_image_data_hash
-  { data: { tags: ['one', 'two'], likes: { count: 11 }, created_time: '1456244825' } }
+  { data: { tags: ['one', 'two'], likes: { count: 11 }, created_time: '1456244825', id: 'existing-uid' } }
 end
 
 def strong_image_data_hash
-  { data: { tags: ['one', 'two'], likes: { count: 110 }, created_time: '1456244825' } }
+  { data: { tags: ['one', 'two'], likes: { count: 110 }, created_time: '1456244825', id: 'existing-uid' } }
 end
 
 describe ImageImporter do
@@ -24,6 +24,13 @@ describe ImageImporter do
       expect(Hashtag.last.label).to eq 'two'
       expect(Hashtag.first.raw_related_hashtags).to eq ['one', 'two']
       expect(Hashtag.last.raw_related_hashtags).to eq ['one', 'two']
+    end
+
+    it "does not import images with existing IG uid" do
+      Image.create(ig_media_id: 'existing-uid')
+      expect(Image.count).to eq 1
+      ImageImporter.import(strong_image_data_hash)
+      expect(Image.count).to eq 1
     end
 
     it "updates the correct timeslot" do

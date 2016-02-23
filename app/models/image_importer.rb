@@ -8,6 +8,7 @@ class ImageImporter
     uid, likes, created_time, tags = data[:id], data[:likes][:count], data[:created_time], data[:tags]
 
     return unless likes.to_i > 99
+    return false if Image.where(ig_media_id: uid).any?
 
     self.create_image(uid, likes, created_time, tags)
   end
