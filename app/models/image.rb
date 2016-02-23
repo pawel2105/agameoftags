@@ -20,4 +20,13 @@ class Image < ActiveRecord::Base
   def create_hashtags tags
     tags.each { |tag| hashtags.create(raw_related_hashtags: tags, label: tag) }
   end
+
+  def update_hashtag_info slot_name, likes
+    self.hashtags.each do |tag|
+      correct_slot = tag.timeslots.where(slot_name: slot_name).first
+      correct_slot.number_of_likes += likes
+      correct_slot.number_of_photos += 1
+      correct_slot.save
+    end
+  end
 end
