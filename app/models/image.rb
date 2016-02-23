@@ -17,13 +17,6 @@ class Image < ActiveRecord::Base
     (self.created_at.to_i - self.ig_publish_time.to_i) / 3600
   end
 
-  def self.import data_hash
-    data = data_hash[:data]
-    uid, likes, created_time = data[:id], data[:likes][:count], data[:created_time]
-    saved_image = Image.create(ig_media_id: uid, ig_publish_time: created_time, number_of_likes: likes)
-    saved_image.create_hashtags(data[:tags])
-  end
-
   def create_hashtags tags
     tags.each { |tag| hashtags.create(raw_related_hashtags: tags, label: tag) }
   end
