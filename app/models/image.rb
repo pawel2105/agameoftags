@@ -18,7 +18,10 @@ class Image < ActiveRecord::Base
   end
 
   def create_hashtags tags
-    tags.each { |tag| hashtags.create(raw_related_hashtags: tags, label: tag) }
+    tags.each do |tag|
+      next if Hashtag.where(label: tag).any?
+      hashtags.create(raw_related_hashtags: tags, label: tag)
+    end
   end
 
   def update_hashtag_info slot_name, likes

@@ -26,6 +26,12 @@ describe ImageImporter do
       expect(Hashtag.last.raw_related_hashtags).to eq ['one', 'two']
     end
 
+    it "does not create hashtags that already exist" do
+      Hashtag.create(label: 'one')
+      ImageImporter.import(strong_image_data_hash)
+      expect(Hashtag.count).to eq 2
+    end
+
     it "does not import images with existing IG uid" do
       Image.create(ig_media_id: 'existing-uid')
       expect(Image.count).to eq 1
