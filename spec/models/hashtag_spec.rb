@@ -2,14 +2,15 @@
 #
 # Table name: hashtags
 #
-#  id                  :integer          not null, primary key
-#  image_id            :integer
-#  raw_related_hashtag :text
-#  related_hashtags    :text
-#  related_hashtag_ids :text
-#  total_count_on_ig   :integer
-#  created_at          :datetime         not null
-#  updated_at          :datetime         not null
+#  id                   :integer          not null, primary key
+#  image_id             :integer
+#  label                :string
+#  raw_related_hashtags :text             default("{}"), is an Array
+#  related_hashtags     :text             default("{}"), is an Array
+#  related_hashtag_ids  :text             default("{}"), is an Array
+#  total_count_on_ig    :integer
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
 #
 
 require 'rails_helper'

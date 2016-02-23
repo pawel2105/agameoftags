@@ -18,17 +18,18 @@ ActiveRecord::Schema.define(version: 20160223173022) do
 
   create_table "hashtags", force: :cascade do |t|
     t.integer  "image_id"
-    t.text     "raw_related_hashtag"
-    t.text     "related_hashtags"
-    t.text     "related_hashtag_ids"
+    t.string   "label"
+    t.text     "raw_related_hashtags", default: [],              array: true
+    t.text     "related_hashtags",     default: [],              array: true
+    t.text     "related_hashtag_ids",  default: [],              array: true
     t.integer  "total_count_on_ig"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
   create_table "images", force: :cascade do |t|
     t.string   "ig_media_id"
-    t.datetime "ig_publish_time"
+    t.string   "ig_publish_time"
     t.integer  "number_of_likes", default: 0
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
