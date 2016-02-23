@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  pool: 25
+  timeout: 5000
+
+development:
+  <<: *default
+  database: agameoftones_development
+
+test:
+  <<: *default
+  database: agameoftones_test
+
+production:
+  <<: *default
+  database: agameoftones_production

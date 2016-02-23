@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>A game of tags</title>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
+    <%#= stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Raleway', media: "all" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= render partial: 'shared/nav' %>
+    <%= yield %>
+    <%= render partial: 'shared/footer' %>
+  </body>
+</html>
