@@ -8,6 +8,7 @@ gem 'omniauth'
 gem 'omniauth-instagram'
 gem 'jquery-rails'
 gem 'pg'
+gem 'activerecord-import'
 
 group :development do
   gem 'web-console', '~> 2.0'
