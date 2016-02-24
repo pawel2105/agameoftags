@@ -1,9 +1,20 @@
 require File.expand_path('../boot', __FILE__)
-
 require 'rails/all'
 
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
+# https://github.com/zdennis/activerecord-import/issues/149
+require 'activerecord-import'
+require 'activerecord-import/base'
+
+class ActiveRecord::Base
+  class << self
+    alias :ar_import :import
+    remove_method :import
+  end
+end
+
+require 'elasticsearch/model'
+require 'elasticsearch/rails'
+
 Bundler.require(*Rails.groups)
 
 module Agameoftags

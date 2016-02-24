@@ -14,21 +14,20 @@ TIMESLOT_LABELS.each_with_index do |slot, slot_index|
   end
 end
 
-Hashtag.import creatable_hashtags
+Hashtag.ar_import creatable_hashtags
 
 all_hashtags = Hashtag.all
 all_tags = Hashtag.pluck(:label)
 hashtag_count = Hashtag.count
 
 Hashtag.all.each_with_index do |x, index|
-  puts "Timeslot #{index + 1} of #{hashtag_count}"
   TIMESLOT_LABELS.each do |slot|
     creatable_timeslots.push Timeslot.new(slot_name: slot, hashtag_id: x.id)
   end
 
   if creatable_timeslots.size > 10000
-    puts "importing timeslot batch"
-    Timeslot.import creatable_timeslots
+    puts "importing timeslot batch #{index + 1} of #{hashtag_count}"
+    Timeslot.ar_import creatable_timeslots
     creatable_timeslots = []
   end
 end

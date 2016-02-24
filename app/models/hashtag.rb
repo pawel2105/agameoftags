@@ -14,6 +14,9 @@
 #
 
 class Hashtag < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   belongs_to :image
   has_many :timeslots
 
@@ -33,3 +36,6 @@ class Hashtag < ActiveRecord::Base
     TIMESLOT_LABELS.each { |slot| self.timeslots.create(slot_name: slot) }
   end
 end
+
+# Hashtag.import
+# @articles = Hashtag.search('foobar').records
