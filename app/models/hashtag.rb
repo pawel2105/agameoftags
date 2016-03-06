@@ -30,6 +30,18 @@ class Hashtag < ActiveRecord::Base
     end
   end
 
+  def self.update_siblings tag, object
+    tag_in_question = Hashtag.where(label: tag).first
+    current_related_tags = tag_in_question.related_hashtags
+    possibly_related_tags = object[:tags]
+    together = [current_related_tags,possibly_related_tags].flatten.uniq.compact
+
+    best_related = Hashtag.where(label: together).sort_by(&:total_count_on_ig).first(50)
+    best_labels = best_related.map(&:label)
+    best_ids = best_related.map(&:id)
+    tag_in_question.update(related_hashtags: best_labels, raw_related_hashtags: best_labels, related_hashtag_ids: best_ids)
+  end
+
   private
 
   def add_timeslots

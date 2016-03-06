@@ -27,7 +27,11 @@ class HashtagImporter
 
     data_hash = FakeInstagram.hashtag_media
     data_hash[:data].each do |ig_object|
+
+      Rails.logger.warn ig_object.inspect
+
       ImageImporter.import(ig_object)
+      Hashtag.update_siblings(tag, ig_object)
     end
   end
 
@@ -35,7 +39,7 @@ class HashtagImporter
     data_array = data_hash[:data]
 
     data_array.each do |obj|
-      Hashtag.update_or_create(tag, obj[1])
+      current_tag = Hashtag.update_or_create(tag, obj[1])
     end
   end
 end

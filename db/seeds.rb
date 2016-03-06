@@ -1,3 +1,5 @@
+# create a bunch of random hashtags
+
 creatable_hashtags = []
 creatable_timeslots = []
 
@@ -14,7 +16,11 @@ TIMESLOT_LABELS.each_with_index do |slot, slot_index|
   end
 end
 
+# import the hashtags into the DB
+
 Hashtag.ar_import creatable_hashtags
+
+# create a timeslot for each hashtag
 
 all_hashtags = Hashtag.all
 all_tags = Hashtag.pluck(:label)
