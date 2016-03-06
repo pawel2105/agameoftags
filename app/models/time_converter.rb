@@ -6,7 +6,7 @@ class TimeConverter
 
   def get_slot_name
     prefix = weekday_name[@timestamp.wday]
-    suffix = @timestamp.hour
+    suffix = '%02d' % @timestamp.hour
     return "#{prefix}#{suffix}"
   end
 

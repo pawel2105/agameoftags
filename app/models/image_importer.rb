@@ -3,8 +3,7 @@ class ImageImporter
     # this is where the API call will be made
   end
 
-  def self.import data_hash
-    data = data_hash[:data]
+  def self.import data
     uid, likes, created_time, tags = data[:id], data[:likes][:count], data[:created_time], data[:tags]
 
     return unless likes.to_i > 99

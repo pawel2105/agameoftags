@@ -1,1 +1,21 @@
 intro.html.erb
+
+<br />
+<br />
+<br />
+<br />
+<br />
+
+Add 3 hashtags:
+
+<%= form_tag '/hashtag-query', method: :get do %>
+  <%= text_field_tag 'hashtag_one' %> <br />
+  <%= text_field_tag 'hashtag_two' %> <br />
+  <%= text_field_tag 'hashtag_three' %> <br />
+  <%= submit_tag 'submit' %>
+<% end %>
+
+<br />
+<br />
+<br />
+<br />

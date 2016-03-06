@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160223173022) do
+ActiveRecord::Schema.define(version: 20160306151417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,14 @@ ActiveRecord::Schema.define(version: 20160223173022) do
     t.string   "ig_media_id"
     t.string   "ig_publish_time"
     t.integer  "number_of_likes", default: 0
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
+  create_table "search_requests", force: :cascade do |t|
+    t.string   "query"
+    t.integer  "search_count",    default: 0
+    t.datetime "last_api_search"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
   end
