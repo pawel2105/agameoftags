@@ -11,6 +11,7 @@ gem 'pg'
 gem 'activerecord-import', require: false
 gem 'elasticsearch-model', require: false
 gem 'elasticsearch-rails', require: false
+gem 'sidekiq'
 
 group :development do
   gem 'web-console', '~> 2.0'

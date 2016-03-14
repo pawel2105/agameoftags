@@ -6,11 +6,13 @@ class QueriesController < ApplicationController
     # add before filter to ensure all 3 hashtags.
     # add JS validation in the form to ensure all 3 hashtags are requested.
 
+    record_batch_request
+
     @query_tags.each do |tag|
       @results << HashtagImporter.fetch_hashtag(tag)
     end
 
-    if @results.include?(true)
+    if @results.include?(:instagram_query_in_progress)
       return redirect_to query_waiting_path
     else
       # data is recent enough, display it
@@ -18,6 +20,10 @@ class QueriesController < ApplicationController
   end
 
   def waiting
+  end
+
+  def record_batch_request
+    @current_user.request_batches.create(query_terms: @query_tags)
   end
 
   private

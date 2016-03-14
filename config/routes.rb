@@ -4,4 +4,6 @@ Rails.application.routes.draw do
 
   get 'hashtag-query' => 'queries#search'
   get 'hashtag-query/waiting' => 'queries#waiting', as: :query_waiting
+
+  get 'my-search-history' => 'profile#searches'
 end

@@ -13,6 +13,8 @@
 #
 
 class User < ActiveRecord::Base
+  has_many :request_batches
+
   def self.find_or_create_from_uid auth_hash
     time_of_request = DateTime.current.to_i
     uid, username, access_token = self.attrs_from(auth_hash)

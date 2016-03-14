@@ -2,23 +2,31 @@ require 'net/http'
 
 class HashtagImporter
   def self.fetch_hashtag tag
-    request_for_tag = SearchRequest.where(query: tag).first
+    @tag = tag
     importer = new()
+    importer.fetch_hashtag
+  end
+
+  def fetch_hashtag
+    request_for_tag = SearchRequest.where(query: @tag).first
 
     if request_for_tag && request_for_tag.last_api_search > (Time.now - 24.hours)
       new_count = request_for_tag.search_count + 1
       request_for_tag.update_attributes(search_count: new_count)
-      return false
     elsif request_for_tag
       new_count = request_for_tag.search_count + 1
       request_for_tag.update_attributes(search_count: new_count, last_api_search: Time.now)
-      importer.make_api_request_for(tag)
-      return true
+      HashtagWorker.perform_async(@tag)
+      return :instagram_query_in_progress
     else
-      SearchRequest.create(query: tag, last_api_search: Time.now)
-      importer.make_api_request_for(tag)
-      return true
+      record_query
+      HashtagWorker.perform_async(@tag)
+      return :instagram_query_in_progress
     end
+  end
+
+  def record_query
+    SearchRequest.create(query: @tag, last_api_search: Time.now)
   end
 
   def make_api_request_for tag
