@@ -12,4 +12,8 @@
 
 class RequestBatch < ActiveRecord::Base
   belongs_to :user
+
+  def mark_as_complete!
+    update(complete: true)
+  end
 end

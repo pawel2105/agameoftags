@@ -1,12 +1,52 @@
-<br />
-<br />
-<br />
-<br />
-<br />
+<div class='main-container'>
+  <div class="tabs is-boxed">
+    <ul>
+      <%= link_to new_query_path do %>
+        <i class="fa fa-image"></i> New search
+      <% end %>
 
-Your request is being processed...
+      <li>
+        <a><i class="fa fa-music"></i> Previous searches</a>
+      </li>
 
-<br />
-<br />
-<br />
-<br />
+      <li>
+        <a><i class="fa fa-film"></i> Help</a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="search-container">
+    Your request is being processed!
+  </div>
+</div>
+
+<style type="text/css">
+  .main-container {
+    margin: 80px auto 0;
+    width: 80%;
+  }
+
+  .search-container {
+    margin-top: -20px!important;
+    margin-bottom: 50px;
+    background-color: white;
+    min-height: 500px;
+    border-left: 1px solid #d3d6db;
+    border-right: 1px solid #d3d6db;
+    border-bottom: 1px solid #d3d6db;
+  }
+
+  .search-field-wrapper {
+    padding: 2em;
+    text-align: center;
+  }
+
+  .ctr-txt {
+    text-align: center;
+  }
+
+  .tag-search-input {
+    width: 90%;
+    padding: 0.35em;
+  }
+</style>

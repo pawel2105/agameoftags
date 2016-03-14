@@ -1,8 +1,8 @@
 class HashtagWorker
   include Sidekiq::Worker
 
-  def perform tag
+  def perform tag, request
     importer = HashtagImporter.new
-    importer.make_api_request_for(tag)
+    importer.make_api_request_for(tag, request)
   end
 end

@@ -1,3 +1,27 @@
-<% if !current_user %>
-  <%= link_to 'login with IG', '/auth/instagram' %>
-<% end %>
+<nav class='top-nav'>
+  <div class='nav-container'>
+    <div class='nav-logo'>
+      <%= link_to root_path do %>
+        <%= image_tag 'logo.png', class: 'mybema-logo' %>
+      <% end %>
+
+      <span class='mybema-logo-word'>
+        <%= link_to 'A GAME OF TAGS', root_path %>
+      </span>
+    </div>
+
+    <div class='nav-right-side'>
+      <ul class='nav-right-list'>
+        <li><a href='pricing.html' class='nav-link'>Blog</a></li>
+        <li><a href='pricing.html' class='nav-link'>Pricing</a></li>
+        <li><a href='#' class='nav-link'>Resources</a></li>
+
+        <% if !current_user %>
+          <li>
+            <%= link_to 'login with IG', '/auth/instagram', class: 'nav-link' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
