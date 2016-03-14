@@ -28,9 +28,9 @@ end
 
 describe Hashtag do
   describe "creation" do
-    it "new hashtag comes with 168 timeslots" do
+    it "new hashtag comes with 24 timeslots" do
       hashtag = Hashtag.create
-      expect(hashtag.timeslots.count).to eq(168)
+      expect(hashtag.timeslots.count).to eq(24)
     end
   end
 

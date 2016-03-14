@@ -5,12 +5,6 @@ class TimeConverter
   end
 
   def get_slot_name
-    prefix = weekday_name[@timestamp.wday]
-    suffix = '%02d' % @timestamp.hour
-    return "#{prefix}#{suffix}"
-  end
-
-  def weekday_name
-    { 1 => "mon_", 2 => "tue_", 3 => "wed_", 4 => "thu_", 5 => "fri_", 6 => "sat_", 7 => "sun_" }
+    '%02d' % @timestamp.hour
   end
 end
