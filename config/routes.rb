@@ -7,4 +7,7 @@ Rails.application.routes.draw do
   get 'hashtag-query/waiting' => 'queries#waiting', as: :query_waiting
 
   get 'my-search-history' => 'profile#searches', as: :searches
+
+  # Admin
+  get 'stats' => 'stats#index', as: :stats
 end

@@ -1,7 +1,7 @@
 class TimeConverter
   def initialize timestamp
     integer_time = timestamp.to_i
-    @timestamp = Time.at(integer_time)
+    @timestamp   = Time.at(integer_time)
   end
 
   def get_slot_name

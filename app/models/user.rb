@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def admin?
+    ig_username == 'suggested_username'
+  end
+
   private
 
   def self.attrs_from hash

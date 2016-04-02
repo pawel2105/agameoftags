@@ -12,6 +12,11 @@
 
     <div class='nav-right-side'>
       <ul class='nav-right-list'>
+        <% if is_admin? %>
+          <li>
+            <%= link_to 'Stats', stats_path, class: 'nav-link' %>
+          </li>
+        <% end %>
         <li><a href='pricing.html' class='nav-link'>Blog</a></li>
         <li><a href='pricing.html' class='nav-link'>Pricing</a></li>
         <li><a href='#' class='nav-link'>Resources</a></li>

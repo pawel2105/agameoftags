@@ -1,27 +1,35 @@
+require 'open-uri'
+
 class FakeInstagram
+  def initialize user
+    @token = user.ig_access_token
+  end
 
   # https://api.instagram.com/v1/tags/{tag-name}/media/recent?access_token=ACCESS-TOKEN
-  def self.hashtag_media letter=nil
-    final_hash = { "data": [] }
+  def hashtag_media
+    results_list = []
 
-    random_letter = letter || ALL_WORDS.sample[0]
+    response = open("https://api.instagram.com/v1/tags/#{tag}/media/recent?access_token=#{@token}").read
+    response_object = JSON.parse(response)
 
-    10.times do
-      random_tags = []
-      rand(20).times do
-        random_tags.push ALL_WORDS.select { |x| x[0] == random_letter }.sample
-      end
-      random_tags = random_tags.uniq
-      hash = { "type": "image", "tags": random_tags, "likes": { "count": rand(4000) },
-               "id": rand(10000000).to_s, "created_at": Time.at(rand * Time.now.to_i).to_i }
-      final_hash[:data].push hash
+    response_object["data"].each do |image_object|
+      single_image = {}
+      single_image['type']       = 'image'
+      single_image['likes']      = { 'count' => image_object['likes']['count'] }
+      single_image['tags']       = image_object['tags']
+      single_image['id']         = image_object['id']
+      single_image['created_at'] = image_object['created_time']
+
+      results_list.push single_image
     end
 
-    return final_hash
+    return results_list
   end
 
   # https://api.instagram.com/v1/tags/{tag-name}?access_token=ACCESS-TOKEN
-  def self.single_tag_data tag
-    return { "data": { "media_count": rand(4000), "name": tag } }
+  def single_tag_data tag
+    response = open("https://api.instagram.com/v1/tags/#{tag}?access_token=#{@token}").read
+    response_object = JSON.parse(response)
+    return response_object
   end
 end
