@@ -30,15 +30,15 @@ class Hashtag < ActiveRecord::Base
     end
   end
 
-  def establish_hashtag_mix tag, object
-    tag_in_question       = Hashtag.where(label: tag).first
+  def self.establish_hashtag_mix tag, object, tag_in_question
     current_related_tags  = tag_in_question.related_hashtags
     possibly_related_tags = object[:tags]
     [current_related_tags,possibly_related_tags].flatten.uniq.compact
   end
 
   def self.update_siblings tag, object
-    tags         = establish_hashtag_mix(tag, object)
+    tag_in_question = Hashtag.where(label: tag).first
+    tags         = establish_hashtag_mix(tag, object, tag_in_question)
     best_related = Hashtag.where(label: tags).sort_by(&:total_count_on_ig).first(50)
     best_labels  = best_related.map(&:label)
     best_ids     = best_related.map(&:id)

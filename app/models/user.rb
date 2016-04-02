@@ -14,6 +14,7 @@
 
 class User < ActiveRecord::Base
   has_many :request_batches
+  has_many :search_requests
 
   def self.find_or_create_from_uid auth_hash
     time_of_request = DateTime.current.to_i

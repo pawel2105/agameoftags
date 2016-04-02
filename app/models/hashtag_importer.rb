@@ -1,12 +1,14 @@
 require 'net/http'
 
 class HashtagImporter
-  def self.fetch_hashtag tag, request
-    @tag = tag
-    @request_id = request.id
-
-    importer = new()
+  def self.fetch_hashtag tag, request_batch_id
+    importer = new(tag, request_batch_id)
     importer.fetch_hashtag
+  end
+
+  def initialize tag, request_batch_id
+    @tag = tag
+    @request_batch_id = request_batch_id
   end
 
   def fetch_hashtag
@@ -17,15 +19,15 @@ class HashtagImporter
     elsif request.any?
       new_count = request.first.search_count + 1
       request.first.update_attributes(search_count: new_count, last_api_search: Time.now)
-      perform_async
+      perform_async request.first.id
     else
       record_query
-      perform_async
+      perform_async @request_batch_id
     end
   end
 
-  def perform_async
-    HashtagWorker.perform_async(@tag, @request_id)
+  def perform_async request_id
+    HashtagWorker.perform_async(@tag, request_id)
     return :instagram_query_in_progress
   end
 
@@ -47,16 +49,17 @@ class HashtagImporter
     SearchRequest.create(query: @tag, last_api_search: Time.now)
   end
 
-  def increment_completeness_of_search_request_batch request_id
-    RequestBatch.increment_completeness_for request_id
+  def increment_completeness_of_search_request_batch
+    RequestBatch.increment_completeness_for @request_batch_id
   end
 
-  def make_api_request_for tag, request_id
-    api_fetcher = FakeInstagram.new(user)
-    fetch_and_save_data_for_single_tag(api_fetcher, tag)
+  def make_api_request
+    request = RequestBatch.find(@request_batch_id)
+    api_fetcher = InstagramInterface.new(request.user)
+    fetch_and_save_data_for_single_tag(api_fetcher, @tag)
 
-    api_fetcher.hashtag_media.each do |ig_object|
-      fetch_and_save_recent_related_images_for_tag object, tag
+    api_fetcher.hashtag_media.each do |object|
+      fetch_and_save_recent_related_images_for_tag object, @tag
     end
   end
 

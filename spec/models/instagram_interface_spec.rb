@@ -1,9 +1,11 @@
 require 'rails_helper'
 
-describe FakeInstagram do
+describe InstagramInterface do
   describe "single_tag_data" do
     before :each do
-      @request = FakeInstagram.single_tag_data('word')
+      user = create(:user)
+      interface = InstagramInterface.new(user)
+      @request  = interface.single_tag_data('word')
     end
 
     it "returns a hash of data" do
@@ -22,38 +24,42 @@ describe FakeInstagram do
   describe "hashtag_media" do
     describe "without any arguments" do
       before :each do
-        @request = FakeInstagram.hashtag_media
+        user = create(:user)
+        interface = InstagramInterface.new(user)
+        @request  = interface.hashtag_media
       end
 
       it "returns a hash of data" do
-        expect(@request.class).to eq Hash
+        expect(@request.class).to eq Array
       end
 
       it "returns 10 fake objects" do
-        expect(@request[:data].length).to eq 10
+        expect(@request.length).to eq 10
       end
 
       it "returns tags all starting with the same letter" do
-        tags = @request[:data][0][:tags]
-        letter = tags[0][0]
-        tags.map do |tag|
-          expect(tag[0]).to eq letter
+        @request.each do |request|
+          request[:tags].each do |tag|
+            expect(tag[0]).to eq 'c'
+          end
         end
       end
     end
 
     describe "with a character argument" do
       before :each do
-        @request = FakeInstagram.hashtag_media 'c'
-        @tags = @request[:data][0][:tags]
+        user = create(:user)
+        interface = InstagramInterface.new(user)
+        @request  = interface.hashtag_media 'c'
+        @tags     = @request[0][:tags]
       end
 
       it "returns a hash of data" do
-        expect(@request.class).to eq Hash
+        expect(@request.class).to eq Array
       end
 
       it "returns 10 fake objects" do
-        expect(@request[:data].length).to eq 10
+        expect(@request.length).to eq 10
       end
 
       it "returns tags all starting with c" do

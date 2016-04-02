@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 def weak_image_data_hash
-  { data: { tags: ['one', 'two'], likes: { count: 11 }, created_time: '1456244825', id: 'existing-uid' } }
+  { tags: ['one', 'two'], likes: { count: 11 }, created_time: '1456244825', id: 'existing-uid' }
 end
 
 def strong_image_data_hash
-  { data: { tags: ['one', 'two'], likes: { count: 110 }, created_time: '1456244825', id: 'existing-uid' } }
+  { tags: ['one', 'two'], likes: { count: 110 }, created_time: '1456244825', id: 'existing-uid' }
 end
 
 describe ImageImporter do
@@ -41,11 +41,11 @@ describe ImageImporter do
 
     it "updates the correct timeslot" do
       ImageImporter.import(strong_image_data_hash)
-      expect(Timeslot.count).to eq 336
+      expect(Timeslot.count).to eq 48
       image_hashtags = Image.first.hashtags
       image_hashtags.each do |tag|
-        expect(tag.timeslots.where(slot_name: 'tue_18').first.number_of_photos).to eq 1
-        expect(tag.timeslots.where(slot_name: 'tue_18').first.number_of_likes).to eq 110
+        expect(tag.timeslots.where(slot_name: '18').first.number_of_photos).to eq 1
+        expect(tag.timeslots.where(slot_name: '18').first.number_of_likes).to eq 110
       end
     end
 

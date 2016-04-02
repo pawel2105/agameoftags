@@ -11,6 +11,7 @@
 #  user_id         :integer
 #
 
-class SearchRequest < ActiveRecord::Base
-  belongs_to :user
+FactoryGirl.define do
+  factory :request_batch do
+  end
 end

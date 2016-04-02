@@ -11,6 +11,8 @@
 #  user_id         :integer
 #
 
-class SearchRequest < ActiveRecord::Base
-  belongs_to :user
+FactoryGirl.define do
+  factory :search_request do
+    query { Faker::Company.name }
+  end
 end

@@ -11,10 +11,10 @@ class QueriesController < ApplicationController
     # add JS validation in the form to ensure all 3 hashtags are requested.
     # limit to 2 requests per day
 
-    request = record_batch_request
+    request_batch = record_batch_request
 
     @query_tags.each do |tag|
-      @results << HashtagImporter.fetch_hashtag(tag, request)
+      @results << HashtagImporter.fetch_hashtag(tag, request_batch)
     end
 
     if @results.include?(:instagram_query_in_progress)
