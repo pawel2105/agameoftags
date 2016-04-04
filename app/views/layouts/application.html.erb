@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>A game of tags</title>
+    <title>A Game of Tags</title>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Raleway', media: "all" %>
@@ -9,24 +9,12 @@
     <%= stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,700', media: "all" %>
     <%= csrf_meta_tags %>
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="keywords" content="instagram, hashtags, tags, growth, tags for likes, popular instagram hashtags, top hashtags">
-    <meta name="description" content="Find the best instagram hashtags for right now!">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta property="og:title" content="Mybema - Love your community"/>
-    <meta property="og:site_name" content="Mybema - A free, open source online community platform"/>
-    <meta property="og:image" content="wip"/>
-    <meta property="og:type" content="Social Network"/>
-
-    <script type="text/javascript">
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      // ga('create', 'UA-29525026-1', 'auto');
-      ga('send', 'pageview');
-    </script>
+    <%= render partial: 'shared/meta' %>
+    <% if Rails.env.production? %>
+      <%= render partial: 'shared/ga' %>
+    <% end %>
   </head>
+
   <body>
     <%= render partial: 'shared/nav' %>
     <%= yield %>

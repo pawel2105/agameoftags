@@ -254,22 +254,6 @@ strong {
   line-height: 1.5em;
 }
 
-.icon-benefit:before {
-  content: "\e601";
-}
-
-.icon-github:before {
-  content: "\e602";
-}
-
-.icon-mail:before {
-  content: "\e600";
-}
-
-.icon-twitter:before {
-  content: "\e603";
-}
-
 .money-making-wrapper {
   margin-top: 2em;
   padding-bottom: 2em;
@@ -331,6 +315,7 @@ strong {
 .mybema-logo-word {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
+  margin-left: 0.75em;
 }
 
 .mybema-logo-word a {

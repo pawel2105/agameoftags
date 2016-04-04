@@ -19,13 +19,14 @@
         <% end %>
         <li><a href='pricing.html' class='nav-link'>Blog</a></li>
         <li><a href='pricing.html' class='nav-link'>Pricing</a></li>
-        <li><a href='#' class='nav-link'>Resources</a></li>
 
-        <% if !current_user %>
-          <li>
+        <li>
+          <% if current_user %>
+            <%= link_to 'log out', destroy_session_path, method: :delete, class: 'nav-link' %>
+          <% else %>
             <%= link_to 'login with IG', '/auth/instagram', class: 'nav-link' %>
-          </li>
-        <% end %>
+          <% end %>
+        </li>
       </ul>
     </div>
   </div>

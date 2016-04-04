@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    cookies.permanent[:session_key].destroy
+    cookies.delete(:session_key)
     flash[:notice] = 'You have been logged out'
     redirect_to root_path
   end
