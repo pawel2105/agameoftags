@@ -3,6 +3,7 @@ class StatsController < ApplicationController
   before_action :redirect_non_admins
 
   def index
+    @searches = RequestBatch.all
   end
 
   private
