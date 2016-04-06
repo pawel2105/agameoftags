@@ -54,9 +54,6 @@ class Hashtag < ActiveRecord::Base
   def self.fetch_best_related_tags tag, object
     queried_tag  = Hashtag.where(label: tag).first
     tags         = establish_hashtag_mix(tag, object, queried_tag)
-
-    puts "\n\n\n#{tags.inspect}\n\n\n"
-
     best_related = Hashtag.where(label: tags).sort_by(&:total_count_on_ig).first(50)
     best_labels  = best_related.map(&:label)
     best_ids     = best_related.map(&:id)
