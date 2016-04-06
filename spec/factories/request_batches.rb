@@ -1,14 +1,14 @@
 # == Schema Information
 #
-# Table name: search_requests
+# Table name: request_batches
 #
-#  id              :integer          not null, primary key
-#  query           :string
-#  search_count    :integer          default("0")
-#  last_api_search :datetime
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  user_id         :integer
+#  id               :integer          not null, primary key
+#  user_id          :integer
+#  query_terms      :text             default("{}"), is an Array
+#  complete         :boolean          default("false")
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  complete_queries :integer          default("0")
 #
 
 FactoryGirl.define do

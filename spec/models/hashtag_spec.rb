@@ -8,7 +8,7 @@
 #  raw_related_hashtags :text             default("{}"), is an Array
 #  related_hashtags     :text             default("{}"), is an Array
 #  related_hashtag_ids  :text             default("{}"), is an Array
-#  total_count_on_ig    :integer
+#  total_count_on_ig    :integer          default("0")
 #  created_at           :datetime         not null
 #  updated_at           :datetime         not null
 #

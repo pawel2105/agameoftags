@@ -28,7 +28,8 @@ class QueriesController < ApplicationController
   end
 
   def record_batch_request
-    @current_user.request_batches.create(query_terms: @query_tags)
+    batch = @current_user.request_batches.create(query_terms: @query_tags)
+    batch.id
   end
 
   private

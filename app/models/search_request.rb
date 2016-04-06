@@ -8,9 +8,7 @@
 #  last_api_search :datetime
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  user_id         :integer
 #
 
 class SearchRequest < ActiveRecord::Base
-  belongs_to :user
 end

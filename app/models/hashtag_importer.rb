@@ -32,7 +32,8 @@ class HashtagImporter
   end
 
   def searched_for_within_last_hour? request
-    request.any? && request.last_api_search > (Time.now - 1.hour)
+    return false unless request.any?
+    request.last.last_api_search > (Time.now - 1.hour)
   end
 
   def fetch_and_save_data_for_single_tag api_fetcher, tag
@@ -40,9 +41,9 @@ class HashtagImporter
     import(tag, data_for_tag)
   end
 
-  def fetch_and_save_recent_related_images_for_tag object, tag
-    ImageImporter.import(object)
-    Hashtag.update_siblings(tag, object)
+  def fetch_and_save_recent_related_images_for_tag ig_data_object, tag
+    ImageImporter.import(ig_data_object)
+    Hashtag.update_siblings(tag, ig_data_object)
   end
 
   def record_query
@@ -55,17 +56,17 @@ class HashtagImporter
 
   def make_api_request
     request = RequestBatch.find(@request_batch_id)
-    api_fetcher = InstagramInterface.new(request.user)
+    api_fetcher = InstagramInterface.new(request.user, @tag)
     fetch_and_save_data_for_single_tag(api_fetcher, @tag)
 
-    api_fetcher.hashtag_media.each do |object|
-      fetch_and_save_recent_related_images_for_tag object, @tag
+    api_fetcher.hashtag_media.each do |ig_data_object|
+      fetch_and_save_recent_related_images_for_tag ig_data_object, @tag
     end
   end
 
   def import tag, data_hash
     data_hash.each do |obj|
-      current_tag = Hashtag.update_or_create(tag, obj[1])
+      current_tag = Hashtag.update_or_create(tag, obj[1]['media_count'])
     end
   end
 end

@@ -6,7 +6,7 @@ class CreateHashtags < ActiveRecord::Migration
       t.text :raw_related_hashtags, array:true, default: []
       t.text :related_hashtags, array:true, default: []
       t.text :related_hashtag_ids, array:true, default: []
-      t.integer :total_count_on_ig
+      t.integer :total_count_on_ig, default: 0
       t.timestamps null: false
     end
   end

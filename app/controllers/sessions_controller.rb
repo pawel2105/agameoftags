@@ -2,10 +2,6 @@ class SessionsController < ApplicationController
   def create
     user = User.find_or_create_from_uid(auth_hash)
     set_current_user(user)
-
-    # client = Instagram.client(access_token: @current_user.ig_access_token)
-    # Rails.logger.warn client.user_search("suggested_username").inspect
-
     redirect_to root_path
   end
 

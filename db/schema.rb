@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160402123728) do
+ActiveRecord::Schema.define(version: 20160310174712) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,13 +22,14 @@ ActiveRecord::Schema.define(version: 20160402123728) do
     t.text     "raw_related_hashtags", default: [],              array: true
     t.text     "related_hashtags",     default: [],              array: true
     t.text     "related_hashtag_ids",  default: [],              array: true
-    t.integer  "total_count_on_ig"
+    t.integer  "total_count_on_ig",    default: 0
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
   end
 
   create_table "images", force: :cascade do |t|
     t.string   "ig_media_id"
+    t.string   "ig_media_url"
     t.string   "ig_publish_time"
     t.integer  "number_of_likes", default: 0
     t.datetime "created_at",                  null: false
@@ -39,9 +40,9 @@ ActiveRecord::Schema.define(version: 20160402123728) do
     t.integer  "user_id"
     t.text     "query_terms",      default: [],                 array: true
     t.boolean  "complete",         default: false
+    t.integer  "complete_queries", default: 0
     t.datetime "created_at",                       null: false
     t.datetime "updated_at",                       null: false
-    t.integer  "complete_queries", default: 0
   end
 
   create_table "search_requests", force: :cascade do |t|
@@ -50,7 +51,6 @@ ActiveRecord::Schema.define(version: 20160402123728) do
     t.datetime "last_api_search"
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
-    t.integer  "user_id"
   end
 
   create_table "timeslots", force: :cascade do |t|

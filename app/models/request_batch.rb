@@ -18,11 +18,10 @@ class RequestBatch < ActiveRecord::Base
     request   = RequestBatch.find(request_id)
     new_count = request.complete_queries + 1
     request.update(complete_queries: new_count)
-
     request.mark_as_complete! if new_count == 3
   end
 
   def mark_as_complete!
-    update(complete: true)
+    update_attributes(complete: true)
   end
 end

@@ -4,7 +4,8 @@ describe InstagramInterface do
   describe "single_tag_data" do
     before :each do
       user = create(:user)
-      interface = InstagramInterface.new(user)
+      tag  = 'word'
+      interface = InstagramInterface.new(user, tag)
       @request  = interface.single_tag_data('word')
     end
 
@@ -25,7 +26,8 @@ describe InstagramInterface do
     describe "without any arguments" do
       before :each do
         user = create(:user)
-        interface = InstagramInterface.new(user)
+        tag  = 'word'
+        interface = InstagramInterface.new(user, tag)
         @request  = interface.hashtag_media
       end
 
@@ -49,7 +51,8 @@ describe InstagramInterface do
     describe "with a character argument" do
       before :each do
         user = create(:user)
-        interface = InstagramInterface.new(user)
+        tag  = 'word'
+        interface = InstagramInterface.new(user, tag)
         @request  = interface.hashtag_media 'c'
         @tags     = @request[0][:tags]
       end

@@ -1,8 +1,9 @@
 require 'open-uri'
 
 class InstagramInterface
-  def initialize user
+  def initialize user, tag
     @token = user.ig_access_token
+    @tag   = tag
   end
 
   # https://api.instagram.com/v1/tags/{tag-name}/media/recent?access_token=ACCESS-TOKEN
@@ -19,13 +20,13 @@ class InstagramInterface
     if Rails.env.test?
       return fixture_for_test_environment tag
     else
-      return real_instagram_result
+      return real_instagram_result tag
     end
   end
 
   private
 
-  def real_instagram_result
+  def real_instagram_result tag
     response = open("https://api.instagram.com/v1/tags/#{tag}?access_token=#{@token}").read
     response_object = JSON.parse(response)
     return response_object
@@ -34,16 +35,17 @@ class InstagramInterface
   def real_instagram_results_for_media
     results_list = []
 
-    response = open("https://api.instagram.com/v1/tags/#{tag}/media/recent?access_token=#{@token}").read
+    response = open("https://api.instagram.com/v1/tags/#{@tag}/media/recent?access_token=#{@token}").read
     response_object = JSON.parse(response)
 
     response_object["data"].each do |image_object|
       single_image = {}
-      single_image[:type]       = 'image'
-      single_image[:likes]      = { count: image_object['likes']['count'] }
-      single_image[:tags]       = image_object['tags']
-      single_image[:id]         = image_object['id']
-      single_image[:created_at] = image_object['created_time']
+      single_image[:type]      = 'image'
+      single_image[:likes]     = { count: image_object['likes']['count'] }
+      single_image[:tags]      = image_object['tags']
+      single_image[:id]        = image_object['id']
+      single_image[:timestamp] = image_object['created_time']
+      single_image[:url]       = image_object['images']['standard_resolution']['url']
 
       results_list.push single_image
     end
@@ -56,7 +58,6 @@ class InstagramInterface
   end
 
   def media_fixtures_for_test_environment letter=nil
-
     results_list  = []
     chosen_letter = letter || 'c'
 
