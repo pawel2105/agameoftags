@@ -8,6 +8,7 @@ gem 'omniauth'
 gem 'omniauth-instagram'
 gem 'jquery-rails'
 gem 'pg'
+gem 'sinatra', :require => nil
 gem 'activerecord-import', require: false
 gem 'elasticsearch-model', require: false
 gem 'elasticsearch-rails', require: false
