@@ -1,7 +1,8 @@
 require 'open-uri'
 
 class InstagramInterface
-  def initialize user, tag
+  def initialize user_id, tag
+    user   = User.find(user_id)
     @token = user.ig_access_token
     @tag   = tag
   end

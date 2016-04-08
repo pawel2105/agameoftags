@@ -1,14 +1,14 @@
 require 'net/http'
 
 class HashtagImporter
-  def self.fetch_hashtag tag, user, request_batch_id=nil
-    importer = new(tag, user, request_batch_id)
+  def self.fetch_hashtag tag, user_id, request_batch_id=nil
+    importer = new(tag, user_id, request_batch_id)
     importer.fetch_hashtag(:primary_tag)
   end
 
-  def initialize tag, user, request_batch_id=nil
+  def initialize tag, user_id, request_batch_id=nil
     @tag = tag
-    @user = user
+    @user_id = user_id
     @request_batch_id = request_batch_id
   end
 
@@ -18,8 +18,6 @@ class HashtagImporter
       fetch_hashtag(:related_tag, related_tag)
     end
   end
-
-  private
 
   def check_how_to_perform_request tag_type, related_tag, request_id
     if tag_type == :related_tag
@@ -46,7 +44,7 @@ class HashtagImporter
   end
 
   def perform_async request_id
-    HashtagWorker.perform_async(@tag, request_id)
+    HashtagWorker.perform_async(@tag, @user_id, request_id)
     return :instagram_query_in_progress
   end
 
@@ -74,7 +72,7 @@ class HashtagImporter
   end
 
   def make_api_request_for related_tag
-    api_fetcher = InstagramInterface.new(@user, related_tag)
+    api_fetcher = InstagramInterface.new(@user_id, related_tag)
     fetch_and_save_data_for_single_tag(api_fetcher, related_tag)
 
     api_fetcher.hashtag_media.each do |ig_data_object|
@@ -84,7 +82,7 @@ class HashtagImporter
 
   def make_api_request
     request = RequestBatch.find(@request_batch_id)
-    api_fetcher = InstagramInterface.new(request.user, @tag)
+    api_fetcher = InstagramInterface.new(request.user.id, @tag)
     fetch_and_save_data_for_single_tag(api_fetcher, @tag)
 
     api_fetcher.hashtag_media.each do |ig_data_object|

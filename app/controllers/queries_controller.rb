@@ -14,7 +14,7 @@ class QueriesController < ApplicationController
     request_batch = record_batch_request
 
     @query_tags.each do |tag|
-      @results << HashtagImporter.fetch_hashtag(tag, request_batch, @current_user)
+      @results << HashtagImporter.fetch_hashtag(tag, @current_user.id, request_batch)
     end
 
     if @results.include?(:instagram_query_in_progress)
