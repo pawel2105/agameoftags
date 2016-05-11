@@ -277,7 +277,7 @@ a.nav-link:hover {
 }
 
 .nav-link-text {
-  padding-top: 3px;
+  padding-top: 2px;
 }
 
 .paragraph {
@@ -365,6 +365,16 @@ a.nav-link:hover {
 .tag {
   border: 1px solid $borderGray;
   box-shadow: none;
+}
+
+.za-flag {
+  background-image: url("za-flag.png");
+  background-size: cover;
+  display: inline-block;
+  height: 10px;
+  width: 16px;
+  margin: 0 3px;
+  vertical-align: middle;
 }
 
 @media (max-width: 767px) {

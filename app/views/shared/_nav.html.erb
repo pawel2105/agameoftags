@@ -12,11 +12,18 @@
 
     <div class='nav-right-side'>
       <ul class='nav-right-list'>
-        <% if is_admin? %>
+        <% if !is_admin? %>
           <li>
             <%= link_to stats_path, class: 'nav-link' do %>
               <span class="nav-icon icon-sign-in"></span>
               <span class='nav-link-text'>STATS</span>
+            <% end %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to search_history_path, class: 'nav-link' do %>
+              <span class="nav-icon icon-user"></span>
+              <span class='nav-link-text'>PROFILE</span>
             <% end %>
           </li>
         <% end %>

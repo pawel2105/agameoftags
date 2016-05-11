@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get 'new-search' => 'queries#new', as: :new_query
   get 'hashtag-query' => 'queries#search'
   get 'hashtag-query/processing' => 'queries#waiting', as: :query_waiting
-  get 'my-search-history' => 'profile#searches', as: :searches
+  get 'my-search-history' => 'profile#searches', as: :search_history
 
   # Results page
   get 'query/:id/results' => 'results#show', as: :results
