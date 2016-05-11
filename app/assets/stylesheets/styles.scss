@@ -254,8 +254,6 @@ a.breadcrumb-link {
   padding-bottom: 2em;
 }
 
-
-
 .nav-link {
   background-color: $mainBlue;
   border-radius: 5px;
@@ -362,6 +360,11 @@ a.nav-link:hover {
   color: #333;
   font-family: 'Open Sans';
   font-weight: 300;
+}
+
+.tag {
+  border: 1px solid $borderGray;
+  box-shadow: none;
 }
 
 @media (max-width: 767px) {

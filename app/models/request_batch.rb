@@ -14,6 +14,10 @@
 class RequestBatch < ActiveRecord::Base
   belongs_to :user
 
+  def username
+    user.ig_username
+  end
+
   def self.increment_completeness_for request_id
     request   = RequestBatch.find(request_id)
     new_count = request.complete_queries + 1
