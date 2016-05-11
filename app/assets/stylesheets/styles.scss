@@ -56,6 +56,34 @@
   font-weight: 700;
 }
 
+.breadcrumb-icon {
+  margin-right: 3px;
+  font-size: 1em;
+  color: $naturalBlack;
+  cursor: default;
+  transition: all 0.3s ease 0s;
+  vertical-align: middle;
+}
+
+.breadcrumb-link {
+  background-color: $borderGray;
+  border: 1px solid $darkGray;
+  border-radius: 5px;
+  color: $naturalBlack;
+  padding: 5px 10px;
+  &:hover {
+    background-color: $darkGray;
+  }
+}
+
+a.breadcrumb-link {
+  color: $naturalBlack;
+}
+
+.breadcrumbs-container {
+  padding: 0.5em;
+}
+
 .cut-short {
   margin: 0 auto;
   width: 60%;
