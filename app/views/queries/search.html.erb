@@ -10,7 +10,9 @@
       </li>
 
       <li>
-        <a><i class="fa fa-film"></i> Help</a>
+        <%= link_to faq_path do %>
+          <i class="fa fa-film"></i> Help
+        <% end %>
       </li>
     </ul>
   </div>
@@ -19,34 +21,3 @@
     Your request is being processed!
   </div>
 </div>
-
-<style type="text/css">
-  .main-container {
-    margin: 80px auto 0;
-    width: 80%;
-  }
-
-  .search-container {
-    margin-top: -20px!important;
-    margin-bottom: 50px;
-    background-color: white;
-    min-height: 500px;
-    border-left: 1px solid #d3d6db;
-    border-right: 1px solid #d3d6db;
-    border-bottom: 1px solid #d3d6db;
-  }
-
-  .search-field-wrapper {
-    padding: 2em;
-    text-align: center;
-  }
-
-  .ctr-txt {
-    text-align: center;
-  }
-
-  .tag-search-input {
-    width: 90%;
-    padding: 0.35em;
-  }
-</style>

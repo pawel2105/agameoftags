@@ -1,5 +1,6 @@
 class HashtagWorker
   include Sidekiq::Worker
+  sidekiq_options :retry => false
 
   def perform tag, user_id, request_id
     importer = HashtagImporter.new(tag, user_id, request_id)

@@ -27,31 +27,50 @@ class InstagramInterface
 
   private
 
+  def handle_instagram_api_error error
+    response = error.io
+    status = response.status
+
+    if status.include?(429) || status.include?('429')
+      return :ig_status_429
+    end
+  end
+
   def real_instagram_result tag
-    response = open("https://api.instagram.com/v1/tags/#{tag}?access_token=#{@token}").read
-    response_object = JSON.parse(response)
-    return response_object
+    begin
+      Rails.logger.warn "\n\nSINGLE RESULT ATTEMPT\n\n"
+      response = open("https://api.instagram.com/v1/tags/#{tag}?access_token=#{@token}").read
+      response_object = JSON.parse(response)
+      return response_object
+    rescue OpenURI::HTTPError => error
+      handle_instagram_api_error(error)
+    end
   end
 
   def real_instagram_results_for_media
     results_list = []
 
-    response = open("https://api.instagram.com/v1/tags/#{@tag}/media/recent?access_token=#{@token}").read
-    response_object = JSON.parse(response)
+    begin
+      Rails.logger.warn "\n\nMEDIA RESULT ATTEMPT\n\n"
+      response = open("https://api.instagram.com/v1/tags/#{@tag}/media/recent?access_token=#{@token}").read
+      response_object = JSON.parse(response)
 
-    response_object["data"].each do |image_object|
-      single_image = {}
-      single_image[:type]      = 'image'
-      single_image[:likes]     = { count: image_object['likes']['count'] }
-      single_image[:tags]      = image_object['tags']
-      single_image[:id]        = image_object['id']
-      single_image[:timestamp] = image_object['created_time']
-      single_image[:url]       = image_object['images']['standard_resolution']['url']
+      response_object["data"].each do |image_object|
+        single_image = {}
+        single_image[:type]      = 'image'
+        single_image[:likes]     = { count: image_object['likes']['count'] }
+        single_image[:tags]      = image_object['tags']
+        single_image[:id]        = image_object['id']
+        single_image[:timestamp] = image_object['created_time']
+        single_image[:url]       = image_object['images']['standard_resolution']['url']
 
-      results_list.push single_image
+        results_list.push single_image
+      end
+
+      return results_list
+    rescue OpenURI::HTTPError => error
+      handle_instagram_api_error(error)
     end
-
-    return results_list
   end
 
   def fixture_for_test_environment tag

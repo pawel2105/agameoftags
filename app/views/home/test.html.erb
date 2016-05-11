@@ -10,7 +10,10 @@
   </div>
 
   <div class='hero-cta-wrapper'>
-    <%= button_to 'SIGN IN', '/auth/instagram', class: 'hero-cta' %>
+    <%= button_to '/auth/instagram', class: 'hero-cta' do %>
+      <span class="nav-icon icon-instagram"></span>
+      <span class='link-text'>SIGN IN WITH INSTAGRAM</span>
+    <% end %>
   </div>
 
   <%= image_tag 'graph.png', style: 'width: 70%; margin: 0px auto; position: absolute; display: block; z-index: -1; opacity: 0.2; bottom: 120px; left: 0; right: 0;' %>
@@ -61,21 +64,6 @@
     </div>
   </div>
 </div>
-
-<style type="text/css">
-  .example-tag {
-    border: 1px solid #CCC;
-    padding: 8px;
-    background-color: #FFF;
-    margin-right: 0.5em;
-    margin-bottom: 0.75em;
-    display: inline-block;
-  }
-
-  .example-tag a {
-    color: #000;
-  }
-</style>
 
 <div class='mybema-benefits'>
   <h1 class='mybema-benefits-header'>

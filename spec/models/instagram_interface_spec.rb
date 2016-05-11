@@ -5,7 +5,7 @@ describe InstagramInterface do
     before :each do
       user = create(:user)
       tag  = 'word'
-      interface = InstagramInterface.new(user, tag)
+      interface = InstagramInterface.new(user.id, tag)
       @request  = interface.single_tag_data('word')
     end
 
@@ -27,7 +27,7 @@ describe InstagramInterface do
       before :each do
         user = create(:user)
         tag  = 'word'
-        interface = InstagramInterface.new(user, tag)
+        interface = InstagramInterface.new(user.id, tag)
         @request  = interface.hashtag_media
       end
 
@@ -52,7 +52,7 @@ describe InstagramInterface do
       before :each do
         user = create(:user)
         tag  = 'word'
-        interface = InstagramInterface.new(user, tag)
+        interface = InstagramInterface.new(user.id, tag)
         @request  = interface.hashtag_media 'c'
         @tags     = @request[0][:tags]
       end

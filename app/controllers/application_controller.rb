@@ -3,6 +3,13 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  def bounce_guests
+    unless @current_user
+      flash[:notice] = 'You cannot go there!'
+      redirect_to root_path
+    end
+  end
+
   def fetch_current_user
     cookie_key = cookies.permanent[:session_key]
     return false unless cookie_key

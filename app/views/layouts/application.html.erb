@@ -16,8 +16,11 @@
   </head>
 
   <body>
-    <%= render partial: 'shared/nav' %>
-    <%= yield %>
-    <%= render partial: 'shared/footer' %>
+    <div class="body-table-container">
+      <%= render partial: 'shared/nav' %>
+      <%= yield %>
+      <div style="display: table-row;height: 1px;"></div>
+      <%= render partial: 'shared/footer' %>
+    </div>
   </body>
 </html>

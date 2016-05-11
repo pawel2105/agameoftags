@@ -14,8 +14,11 @@ class HashtagImporter
 
   def fetch_details_for_related_tags
     parent_tag = Hashtag.where(label: @tag).first
-    parent_tag.related_hashtags.each do |related_tag|
-      fetch_hashtag(:related_tag, related_tag)
+
+    if parent_tag
+      parent_tag.related_hashtags.each do |related_tag|
+        fetch_hashtag(:related_tag, related_tag)
+      end
     end
   end
 
@@ -55,7 +58,13 @@ class HashtagImporter
 
   def fetch_and_save_data_for_single_tag api_fetcher, tag
     data_for_tag = api_fetcher.single_tag_data(tag)
-    import(tag, data_for_tag)
+
+    if data_for_tag != :ig_status_429
+      import(tag, data_for_tag)
+    else
+      HashtagWorker.perform_in(30.minutes, tag, @user_id, @request_batch_id)
+      return :ig_status_429
+    end
   end
 
   def fetch_and_save_recent_related_images_for_tag ig_data_object, tag
@@ -73,20 +82,24 @@ class HashtagImporter
 
   def make_api_request_for related_tag
     api_fetcher = InstagramInterface.new(@user_id, related_tag)
-    fetch_and_save_data_for_single_tag(api_fetcher, related_tag)
+    result = fetch_and_save_data_for_single_tag(api_fetcher, related_tag)
 
-    api_fetcher.hashtag_media.each do |ig_data_object|
-      fetch_and_save_recent_related_images_for_tag ig_data_object, related_tag
+    if result != :ig_status_429
+      api_fetcher.hashtag_media.each do |ig_data_object|
+        fetch_and_save_recent_related_images_for_tag ig_data_object, related_tag
+      end
     end
   end
 
   def make_api_request
     request = RequestBatch.find(@request_batch_id)
     api_fetcher = InstagramInterface.new(request.user.id, @tag)
-    fetch_and_save_data_for_single_tag(api_fetcher, @tag)
+    result = fetch_and_save_data_for_single_tag(api_fetcher, @tag)
 
-    api_fetcher.hashtag_media.each do |ig_data_object|
-      fetch_and_save_recent_related_images_for_tag ig_data_object, @tag
+    if result != :ig_status_429
+      api_fetcher.hashtag_media.each do |ig_data_object|
+        fetch_and_save_recent_related_images_for_tag ig_data_object, @tag
+      end
     end
   end
 

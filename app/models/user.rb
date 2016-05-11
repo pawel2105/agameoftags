@@ -27,6 +27,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def can_search?
+    request_batches.where("created_at >= ?", Time.zone.now.beginning_of_day).none?
+  end
+
   def admin?
     ig_username == 'suggested_username'
   end
