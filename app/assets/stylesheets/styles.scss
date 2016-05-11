@@ -63,6 +63,9 @@
   cursor: default;
   transition: all 0.3s ease 0s;
   vertical-align: middle;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .breadcrumb-link {
