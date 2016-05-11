@@ -1,17 +1,13 @@
-<br />
-<br />
-<br />
-<br />
-
 <div class='main-container'>
+  <%= render partial: 'shared/breadcrumbs' %>
+
   <div class="search-results-container">
-    <table class="table ">
+    <table class="table">
       <thead>
         <tr>
           <th>#</th>
           <th>Hashtag</th>
           <th>Number of photos using tag</th>
-          <th></th>
         </tr>
       </thead>
 
@@ -29,90 +25,9 @@
             <td>
               <%= number_with_delimiter result.total_count_on_ig %>
             </td>
-
-            <td>
-              <% if true %>
-                <span class='hero-cta top-hashtags-btn' data-hashtag="<%= result.label %>">
-                  Add to batch
-                </span>
-              <% else %>
-                <span class='hero-cta top-hashtags-btn' data-hashtag="<%= result.label %>">
-                  in batch
-                </span>
-              <% end %>
-            </td>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div>
-
-  <div class='results-batch-container'>
-    <div class='results-batch-header'>
-      <h3>Selected hashtags</h3>
-    </div>
-
-    <div class='results-batch-wrapper'>
-      <div class='stored-results-container'></div>
-    </div>
-  </div>
 </div>
-
-<script type="text/javascript">
-  var $container = $('.stored-results-container');
-  var storedHashtags = <%= raw @selected.to_json %>;
-  localStorage.setItem("hashtags", JSON.stringify(storedHashtags));
-  var storageTags = JSON.parse(localStorage.getItem('hashtags'));
-
-  var renderSelectedTags = function(newStatus) {
-    $container.empty();
-
-    storageTags.forEach(function(tag) {
-      closeTag = '<span class="close-tag" data-key=' + tag + '>x</span>'
-      tagHtml = '<span class="single-stored-tag tag">' + tag + closeTag + '</span>';
-      $container.append(tagHtml);
-
-      if ($.inArray(tag, storageTags)) {
-        if (newStatus === 'enable') {
-          replaceWithEnabledBtn(tag);
-        } else {
-          replaceWithDisabledBtn(tag);
-        }
-      }
-    });
-  }
-
-  var replaceWithDisabledBtn = function(tag) {
-    dataValue = "*[data-hashtag='" + tag + "']";
-    $(dataValue).html('added to batch');
-    $(dataValue).removeClass('hero-cta');
-    $(dataValue).addClass('disabled-hero-cta');
-  }
-
-  var replaceWithEnabledBtn = function(tag) {
-    dataValue = "*[data-hashtag='" + tag + "']";
-    $(dataValue).html('Add to batch');
-    $(dataValue).removeClass('disabled-hero-cta');
-    $(dataValue).addClass('hero-cta');
-  }
-
-  $(function() {
-    renderSelectedTags('disable');
-  });
-
-  $(document).on('click', '.close-tag', function() {
-    var key = $(this).data('key');
-    $(this).parent().remove();
-    index = storedHashtags.indexOf(key)
-    newHashtagsArray = storedHashtags.splice(index, 1)
-    localStorage.setItem("hashtags", JSON.stringify(newHashtagsArray));
-    renderSelectedTags('enable');
-  });
-
-  $(document).on('click', '.top-hashtags-btn', function() {
-    var key = $(this).data('hashtag');
-    newHashtagsArray = storedHashtags.push(key);
-    localStorage.setItem("hashtags", JSON.stringify(newHashtagsArray));
-    renderSelectedTags('disable');
-  });
-</script>

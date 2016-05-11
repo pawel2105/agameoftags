@@ -83,13 +83,12 @@
 }
 
 .search-results-container {
-  margin-bottom: 50px;
+  margin: 1em auto 50px;
   background-color: white;
   min-height: 500px;
   border: 1px solid $borderGray;
-  width: 70%;
-  display: inline-block;
-  vertical-align: top;
+  width: 50%;
+  display: block;
 }
 
 .search-results-container .table {
