@@ -1,0 +1,45 @@
+.nav-container {
+  margin: 0 40px;
+}
+
+.nav-link {
+  color: $mainBlue;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+.nav-logo {
+  float: left;
+  margin-top: 1.5em;
+}
+
+.nav-right-list {
+  list-style: none outside none;
+}
+
+.nav-right-list li {
+  display: inline-block;
+  margin-right: 0.5em;
+  margin-top: 2em;
+}
+
+.nav-right-side {
+  float: right;
+}
+
+.top-nav {
+  background-color: $white;
+  border-bottom: 1px solid transparent;
+  height: 80px;
+  margin-bottom: 19px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.top-nav-border {
+  border-bottom: 1px solid #E9E9CF;
+}

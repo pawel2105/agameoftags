@@ -1,10 +1,18 @@
+// variables
 @import "variables";
+
+// third party stuff
 @import "bulma.min";
+
+// base styles
 @import "base";
+
+// CSS styles
 @import "fonts";
 @import "footer";
 @import "inputs";
 @import "landing_page";
+@import "nav";
 @import "search";
 @import "styles";
-@import "terms";
+@import "terms_and_conditions";

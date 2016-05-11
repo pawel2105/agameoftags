@@ -1,6 +1,58 @@
-.benefit-icon-large {
-  margin: auto;
-  width: 150px;
+.agot-benefits {
+  display: block;
+  min-height: 100vh;
+  min-height: 100%;
+  padding: 1.5em 0 0.5em;
+  text-align: center;
+}
+
+.agot-benefits-header {
+  color: $black;
+  font-size: 3em;
+  font-weight: 300;
+}
+
+.agot-benefits-list {
+  color: #5A5656;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.25em;
+  font-weight: 300;
+  margin: 0 auto;
+  padding: 0.5em;
+  width: 50%;
+}
+
+.agot-benefits-list--item {
+  display: block;
+  margin: 0.5em 0 0 10%;
+  text-align: left;
+  width: 100%;
+}
+
+.agot-logo {
+  vertical-align: middle;
+  width: 40px;
+}
+
+.agot-logo-word {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  margin-left: 0.75em;
+}
+
+.agot-logo-word a {
+  color: #212121;
+  text-decoration: none;
+}
+
+.agot-title {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 3em;
+  color: #3C4E55;
+  padding-top: 4vh;
+  margin: 0.25em auto;
+  width: 60%;
 }
 
 .benefit-wrapper {
@@ -56,17 +108,7 @@
   font-weight: 700;
 }
 
-.breadcrumb-icon {
-  margin-right: 3px;
-  font-size: 1em;
-  color: $naturalBlack;
-  cursor: default;
-  transition: all 0.3s ease 0s;
-  vertical-align: middle;
-  &:hover {
-    cursor: pointer;
-  }
-}
+
 
 .breadcrumb-link {
   background-color: $borderGray;
@@ -104,88 +146,36 @@ a.breadcrumb-link {
   transition: all 0.3s ease 0s;
 }
 
-.main-container {
-  margin: 90px auto 0;
-  width: 80%;
+.faq-answer {
+  line-height: 1.75em;
+  margin-left: 43px;
+  margin-top: 1em;
 }
 
-.nav-icon {
-  margin-right: 3px;
-  font-size: 1.5em;
-  color: $naturalBlack;
-  cursor: default;
-  transition: all 0.3s ease 0s;
+.faq-dot {
+  background-color: #2faafc;
+  border-radius: 50%;
+  display: inline-block;
+  height: 13px;
+  margin-right: 27px;
+  vertical-align: middle;
+  width: 13px;
+}
+
+.faq-header {
+  display: inline-block;
+  font-size: 2em;
+  font-weight: bold;
   vertical-align: middle;
 }
 
-.nav-icon:hover {
-  cursor: pointer;
-}
-
-.nav-link {
-  background-color: $mainBlue;
-  padding: 8px 12px;
-  border-radius: 5px;
-  &:hover {
-    background-color: $mainBlueHover;
-  }
-}
-
-a.nav-link {
-  color: $white;
-}
-
-a.nav-link:hover {
-  text-decoration: none;
-}
-
-.nav-link-text, .link-text {
-  font-weight: lighter;
-  vertical-align: middle;
-}
-
-.nav-link-text {
-  padding-top: 3px;
+.faq-item {
+  margin: 2em 0;
 }
 
 .hero-container {
   margin: 4vh auto;
-}
-
-.processing-container {
-  min-height: 500px;
-}
-
-.processing-header {
-  font-size: 2.5em;
-  margin-bottom: 1em;
-}
-
-.processing-text {
-  font-size: 1.25em;
-  margin: 0 auto;
-  line-height: 1.35em;
-  width: 70%;
-}
-
-.disabled-hero-cta:hover {}
-
-.hero-cta {
-  color: $white;
-  background-color: $mainBlue;
-  padding: 10px;
-  border: none;
-  border-radius: 2px;
-  width: 45%;
-  max-width: 300px;
-  margin-right: 10px;
-  transition: all 0.3s ease 0s;
-}
-
-.hero-cta:hover {
-  background: #0079CE;
-  cursor: pointer;
-}
+}`
 
 .hero-cta-wrapper {
   margin-top: 40px;
@@ -215,11 +205,11 @@ a.nav-link:hover {
 
 .hero-wrapper {
   display: block;
+  margin-top: 80px;
   min-height: 70vh;
   padding: 40px 0.5em;
   text-align: center;
   width: 100%;
-  margin-top: 80px;
 }
 
 .hosting-form {
@@ -229,34 +219,28 @@ a.nav-link:hover {
 .hosting-input {
   border: 2px solid #DDD;
   border-radius: 3px;
+  display: block;
+  font-family: 'Lato', sans-serif;
   font-size: 1.5em;
   margin: 0.5em auto;
-  display: block;
-  padding: 0.5em;
-  font-family: 'Lato', sans-serif;
   min-width: 40%;
+  padding: 0.5em;
 }
 
-.icon-benefit {
-  color: #8BB750;
-  margin-right: 0.25em;
-  line-height: 1.5em;
-}
-
-.money-making-wrapper {
-  margin-top: 2em;
-  padding-bottom: 2em;
+.main-container {
+  margin: 90px auto 0;
+  width: 80%;
 }
 
 .money-cta {
-  color: $white;
   background-color: #8BB750;
-  padding: 10px;
   border: none;
   border-radius: 2px;
-  min-width: 120px;
-  max-width: 200px;
+  color: $white;
   margin-top: 0.75em;
+  max-width: 200px;
+  min-width: 120px;
+  padding: 10px;
   transition: all 0.2s ease 0s;
 }
 
@@ -265,93 +249,37 @@ a.nav-link:hover {
   cursor: pointer;
 }
 
-.mybema-benefits {
-  display: block;
-  min-height: 100vh;
-  min-height: 100%;
-  padding: 1.5em 0 0.5em;
-  text-align: center;
+.money-making-wrapper {
+  margin-top: 2em;
+  padding-bottom: 2em;
 }
 
-.mybema-benefits-header {
-  font-size: 3em;
-  font-weight: 300;
-  color: $black;
+
+
+.nav-link {
+  background-color: $mainBlue;
+  border-radius: 5px;
+  padding: 8px 12px;
+  &:hover {
+    background-color: $mainBlueHover;
+  }
 }
 
-.mybema-benefits-list {
-  color: #5A5656;
-  font-family: 'Lato', sans-serif;
-  font-size: 1.25em;
-  font-weight: 300;
-  padding: 0.5em;
-  width: 50%;
-  margin: 0 auto;
+a.nav-link {
+  color: $white;
 }
 
-.mybema-benefits-list--item {
-  display: block;
-  margin: 0.5em 0 0 10%;
-  width: 100%;
-  text-align: left;
+a.nav-link:hover {
+  text-decoration: none;
 }
 
-.mybema-logo {
-  width: 40px;
+.nav-link-text, .link-text {
+  font-weight: lighter;
   vertical-align: middle;
 }
 
-.mybema-logo-word {
-  font-family: 'Lato', sans-serif;
-  font-weight: 700;
-  margin-left: 0.75em;
-}
-
-.mybema-logo-word a {
-  color: #212121;
-  text-decoration: none;
-}
-
-.mybema-title {
-  font-family: 'Lato', sans-serif;
-  font-weight: 700;
-  font-size: 3em;
-  color: #3C4E55;
-  padding-top: 4vh;
-  margin: 0.25em auto;
-  width: 60%;
-}
-
-.nav-container {
-  margin: 0 40px;
-}
-
-.nav-link {
-  text-decoration: none;
-  color: $mainBlue;
-}
-
-.nav-link:hover {
-  text-decoration: underline;
-}
-
-.nav-logo {
-  float: left;
-  margin-top: 1.5em;
-}
-
-.nav-right-list {
-  list-style: none outside none;
-}
-
-.nav-right-list li {
-  display: inline-block;
-  margin-right: 0.5em;
-  margin-top: 2em;
-}
-
-.nav-right-side {
-  float: right;
+.nav-link-text {
+  padding-top: 3px;
 }
 
 .paragraph {
@@ -373,8 +301,8 @@ a.nav-link:hover {
 .price {
   color: #8BB750;
   font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
   font-size: 4em;
+  font-weight: 300;
 }
 
 .price-period {
@@ -385,20 +313,40 @@ a.nav-link:hover {
   vertical-align: middle;
 }
 
-.screenshot-wrapper {
-  margin: 0 auto 2em;
-  padding-top: 1em;
-  width: 50%;
+.processing-container {
+  min-height: 500px;
+}
+
+.processing-header {
+  font-size: 2.5em;
+  margin-bottom: 1em;
+}
+
+.processing-text {
+  font-size: 1.25em;
+  margin: 0 auto;
+  line-height: 1.35em;
+  width: 70%;
 }
 
 .screenshot {
   width: 50vw;
 }
 
+.screenshot-wrapper {
+  margin: 0 auto 2em;
+  padding-top: 1em;
+  width: 50%;
+}
+
 .screenshot-wrapper > img {
   border: 1px solid #EEE;
   padding: 0.5em;
   width: 50vw;
+}
+
+.search-results {
+  padding: 0.5em 1.5em;
 }
 
 .section-descriptor {
@@ -410,48 +358,33 @@ a.nav-link:hover {
   width: 70%;
 }
 
-.icon-check {
-  color: #2fb133!important;
-}
-
-.social-icon, .functional-icon {
-  margin: 0 6px;
-  font-size: 2em;
-  color: #AAA;
-  cursor: default;
-  transition: all 0.3s ease 0s;
-}
-
-.social-icon:hover {
-  color: $white;
-  cursor: pointer;
-}
-
 .subheader {
   color: #333;
   font-family: 'Open Sans';
   font-weight: 300;
 }
 
-.top-nav {
-  height: 80px;
-  margin-bottom: 19px;
-  border-bottom: 1px solid transparent;
-  position: fixed;
-  top: 0;
-  background-color: $white;
-  width: 100%;
-}
-
-.top-nav-border {
-  border-bottom: 1px solid #E9E9CF;
-}
-
 @media (max-width: 767px) {
-  .mybema-benefits-header {
+  .agot-benefits-header {
     font-size: 2em;
     font-weight: 400;
-    margin-bottom: 0;
+    margin: 0 auto 0.75em;
+    width: 90%;
+  }
+
+  .agot-benefits-list {
+    font-size: 1em;
+    width: 90%;
+  }
+
+  .agot-benefits-list--item {
+    margin: 0.5em 0 0 0;
+  }
+
+  .agot-title {
+    font-size: 2.5em;
+    line-height: 0.9em;
+    margin-bottom: 0.5em;
   }
 
   .benefit-wrap {
@@ -499,27 +432,6 @@ a.nav-link:hover {
     padding: 0 0.5em 1em;
   }
 
-  .mybema-benefits-header {
-    font-size: 1.5em;
-    margin: 0 auto 0.75em;
-    width: 90%;
-  }
-
-  .mybema-benefits-list {
-    font-size: 1em;
-    width: 90%;
-  }
-
-  .mybema-benefits-list--item {
-    margin: 0.5em 0 0 0;
-  }
-
-  .mybema-title {
-    line-height: 0.9em;
-    font-size: 2.5em;
-    margin-bottom: 0.5em;
-  }
-
   .paragraph {
     font-size: 1em;
     width: 90%;
@@ -543,56 +455,4 @@ a.nav-link:hover {
     margin: 0 auto;
     width: 90%;
   }
-}
-
-@media (max-width: 370px) {
-  .hero-cta {
-    display: block;
-    margin: 0.5em auto;
-    width: 100%;
-  }
-}
-
-.top-hashtags-btn {
-  display: block;
-  width: auto;
-  text-align: center;
-}
-
-.top-hashtags-btn:hover {
-  color: $white;
-}
-
-
-
-
-.faq-dot {
-  background-color: #2faafc;
-  width: 13px;
-  height: 13px;
-  display: inline-block;
-  border-radius: 50%;
-  vertical-align: middle;
-  margin-right: 27px;
-}
-
-.faq-answer {
-  margin-left: 43px;
-  margin-top: 1em;
-  line-height: 1.75em;
-}
-
-.faq-header {
-  display: inline-block;
-  vertical-align: middle;
-  font-weight: bold;
-  font-size: 2em;
-}
-
-.faq-item {
-  margin: 2em 0;
-}
-
-.search-results {
-  padding: 0.5em 1.5em;
 }
