@@ -11,8 +11,6 @@
 #  updated_at      :datetime         not null
 #
 
-require 'rails_helper'
-
 describe Image do
   describe "age_in_hours_since_first_fetched" do
     it "has zero number_of_photos" do

@@ -232,6 +232,7 @@ PLATFORMS
 DEPENDENCIES
   activerecord-import
   annotate
+  capybara
   elasticsearch-model
   elasticsearch-rails
   factory_girl_rails

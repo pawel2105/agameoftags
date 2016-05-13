@@ -15,7 +15,7 @@
         <% if !is_admin? %>
           <li>
             <%= link_to stats_path, class: 'nav-link' do %>
-              <span class="nav-icon icon-sign-in"></span>
+              <span class="nav-icon icon-stats"></span>
               <span class='nav-link-text'>STATS</span>
             <% end %>
           </li>
@@ -35,14 +35,10 @@
           </a>
         </li>
 
-        <!-- <li>
-          <a href='pricing.html' class='nav-link'>Pricing</a>
-        </li> -->
-
         <li>
           <% if current_user %>
             <%= link_to destroy_session_path, method: :delete, class: 'nav-link' do %>
-              <span class="nav-icon icon-sign-in"></span>
+              <span class="nav-icon icon-sign-out"></span>
               <span class='nav-link-text'>LOG OUT</span>
             <% end %>
           <% else %>

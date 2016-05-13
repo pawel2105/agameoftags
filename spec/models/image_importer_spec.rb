@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 def weak_image_data_hash
   { tags: ['one', 'two'], likes: { count: 11 }, created_time: '1456244825', id: 'existing-uid' }
 end

@@ -27,4 +27,5 @@ group :test do
   gem 'faker'
   gem 'launchy'
   gem 'timecop'
+  gem 'capybara'
 end

@@ -13,8 +13,6 @@
 #  updated_at           :datetime         not null
 #
 
-require 'rails_helper'
-
 def ig_tags
   ["chiaroscuro", "cryoanaesthesia", "capstone", "calibration", "corinth", "coal_gas", "cotton_rose", "coulisse",
    "cathouse", "commissioning", "cohosh", "cunctation", "cyclobenzaprine", "computer_monitor", "cutler",

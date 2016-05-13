@@ -11,8 +11,6 @@
 #  updated_at       :datetime         not null
 #
 
-require 'rails_helper'
-
 describe Timeslot do
   describe "defaults" do
     it "has zero number_of_likes" do

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 describe InstagramInterface do
   describe "single_tag_data" do
     before :each do
