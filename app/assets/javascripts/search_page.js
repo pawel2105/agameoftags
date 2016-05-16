@@ -13,9 +13,6 @@ $( document ).ready(function() {
   }
 
   function updateDetectedDupes(tagsArray, uniqueTagsArray) {
-    console.log("TAGS " + tagsArray)
-    console.log("UNIQUE " + uniqueTagsArray)
-
     if (tagsArray.length < 3) {
       duplicateHashtagsDetected = false;
     } else {
