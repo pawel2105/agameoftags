@@ -1,3 +1,28 @@
+.chevron-dropdown {
+  background-color: $mainBlue;
+  color: $white;
+  border-radius: 50%;
+  cursor: default;
+  font-size: 20px;
+  padding: 5px;
+  margin: 0 6px;
+  vertical-align: middle;
+  transition: all 0.2s ease 0s;
+}
+
+.chevron-dropdown:hover {
+  background-color: $mainBlueHover;
+  color: $white;
+  cursor: pointer;
+}
+
+.chevron-dropdown-container {
+  margin: 1em auto;
+  padding-bottom: 1em;
+  padding-top: 1em;
+  text-align: center;
+}
+
 .close-tag {
   margin-left: 0.5em;
   color: $closeTagRed;
