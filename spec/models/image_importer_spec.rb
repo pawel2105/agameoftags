@@ -1,9 +1,9 @@
 def weak_image_data_hash
-  { tags: ['one', 'two'], likes: { count: 11 }, created_time: '1456244825', id: 'existing-uid' }
+  { tags: ['one', 'two'], likes: { count: 11 }, timestamp: '1456244825', id: 'existing-uid' }
 end
 
 def strong_image_data_hash
-  { tags: ['one', 'two'], likes: { count: 110 }, created_time: '1456244825', id: 'existing-uid' }
+  { tags: ['one', 'two'], likes: { count: 110 }, timestamp: '1456244825', id: 'existing-uid' }
 end
 
 describe ImageImporter do
@@ -55,6 +55,23 @@ describe ImageImporter do
     it "does not save any hashtags for an image with 99 likes or less" do
       ImageImporter.import(weak_image_data_hash)
       expect(Hashtag.count).to eq 0
+    end
+  end
+
+  describe 'create_image' do
+    it 'creates a new image record' do
+      uid = 'cool-uid'
+      likes = 400
+      timestamp = '1456244825'
+      tags = []
+      url = 'http://www.instagram.com/fake'
+
+      ImageImporter.create_image(uid, likes, timestamp, tags, url)
+      expect(Image.count).to eq 1
+      expect(Image.last.ig_media_id).to eq 'cool-uid'
+      expect(Image.last.ig_publish_time).to eq '1456244825'
+      expect(Image.last.number_of_likes).to eq 400
+      expect(Image.last.ig_media_url).to eq 'http://www.instagram.com/fake'
     end
   end
 end
