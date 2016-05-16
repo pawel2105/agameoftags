@@ -4,19 +4,19 @@ describe HashtagImporter do
   describe "import" do
     before :each do
       @user  = create(:user)
-      @batch = create(:request_batch, user: @user)
+      @batch = create(:request_batch, user: @user, query_terms: ['vehicle', 'truck', 'transport'])
       Sidekiq::Testing.inline!
     end
 
     it "saves the hashtags returned in the data hash" do
       importer = HashtagImporter.fetch_hashtag 'car', @user.id, @batch.id
-      expect(Hashtag.count).to eq 2
+      expect(Hashtag.count).to eq 21
     end
 
     it "saves the correct hashtag information" do
       importer = HashtagImporter.fetch_hashtag 'car', @user.id, @batch.id
       expect(Hashtag.first.label).to eq 'car'
-      expect(Hashtag.last.label).to eq 'snowyday'
+      expect(Hashtag.last.label).to eq 'cabasset'
     end
 
     it "updates the value for an existing hashtag" do

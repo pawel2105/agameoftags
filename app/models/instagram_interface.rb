@@ -74,7 +74,7 @@ class InstagramInterface
   end
 
   def fixture_for_test_environment tag
-    return { "data": { media_count: rand(4000), name: tag } }
+    return { "data": { media_count: 420, name: tag } }
   end
 
   def media_fixtures_for_test_environment letter=nil
@@ -83,8 +83,8 @@ class InstagramInterface
 
     10.times do
       random_tags = []
-      rand(20).times do
-        random_tags.push ALL_WORDS.select { |x| x[0] == chosen_letter }.sample
+      20.times do |index|
+        random_tags.push ALL_WORDS.select { |x| x[0] == chosen_letter }[index]
       end
 
       random_tags = random_tags.uniq
