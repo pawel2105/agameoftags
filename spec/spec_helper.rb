@@ -10,6 +10,7 @@ require 'database_cleaner'
 
 include ActionDispatch::TestProcess
 Capybara.javascript_driver = :poltergeist
+Capybara.ignore_hidden_elements = true
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 ActiveRecord::Migration.maintain_test_schema!
 
