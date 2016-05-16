@@ -22,7 +22,7 @@ class HashtagImporter
     end
   end
 
-  def check_how_to_perform_request tag_type, related_tag, request_id
+  def check_how_to_perform_request tag_type, request_id, related_tag=nil
     if tag_type == :related_tag
       make_api_request_for(related_tag)
     else
@@ -39,10 +39,10 @@ class HashtagImporter
     elsif request.any?
       new_count = request.first.search_count + 1
       request.first.update_attributes(search_count: new_count, last_api_search: Time.now)
-      check_how_to_perform_request(tag_type, related_tag, request.first.id)
+      check_how_to_perform_request(tag_type, request.first.id, related_tag)
     else
       record_query
-      check_how_to_perform_request(tag_type, related_tag, @request_batch_id)
+      check_how_to_perform_request(tag_type, @request_batch_id, related_tag)
     end
   end
 
@@ -105,7 +105,7 @@ class HashtagImporter
 
   def import tag, data_hash
     data_hash.each do |obj|
-      current_tag = Hashtag.update_or_create(tag, obj[1]['media_count'])
+      Hashtag.update_or_create(tag, obj[1][:media_count])
     end
   end
 end

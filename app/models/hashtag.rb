@@ -55,11 +55,9 @@ class Hashtag < ActiveRecord::Base
     queried_tag  = Hashtag.where(label: tag).first
     tags         = establish_hashtag_mix(tag, object, queried_tag)
     best_related = Hashtag.where(label: tags).sort_by(&:total_count_on_ig).first(50)
-    best_labels  = best_related.map(&:label)
-    best_ids     = best_related.map(&:id)
+    cleaned      = best_related.select { |x| x.total_count_on_ig != 0 }
+    best_labels  = cleaned.map(&:label)
+    best_ids     = cleaned.map(&:id)
     [queried_tag, best_labels, best_ids]
   end
 end
-
-# Hashtag.import
-# @articles = Hashtag.search('foobar').records
