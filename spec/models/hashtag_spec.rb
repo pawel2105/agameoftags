@@ -14,14 +14,11 @@
 #
 
 def ig_tags
-  ["chiaroscuro", "cryoanaesthesia", "capstone", "calibration", "corinth", "coal_gas", "cotton_rose", "coulisse",
-   "cathouse", "commissioning", "cohosh", "cunctation", "cyclobenzaprine", "computer_monitor", "cutler",
-   "cerebrospinal_fluid", "crowding", "chicken_feed"]
+  ["c_and_w", "c_battery", "c_clef", "c_compiler", "c_horizon", "c_major", "c_major_scale", "c_program", "ca", "caaba", "cab"]
 end
 
 def ig_object
-  { :type=>"image", :tags=> ig_tags,
-    :likes=>{:count=>363}, :id=>"9497045", :created_at=>950082807}
+  { type: "image", tags: ig_tags, likes: { count: 363}, id: "9497045", timestamp: 950082807 }
 end
 
 describe Hashtag do
@@ -49,10 +46,19 @@ describe Hashtag do
     end
   end
 
+  describe 'establish_hashtag_mix' do
+    it 'returns the correct hashtag mix' do
+      object = { tags: ['cat', 'mouse', 'rat'] }
+      tag_in_question = create(:hashtag, label: 'dog', related_hashtags: ['fish', 'bird'])
+      mix = Hashtag.establish_hashtag_mix(object, tag_in_question)
+      expect(mix).to eq(['fish', 'bird', 'cat', 'mouse', 'rat'])
+    end
+  end
+
   describe "update_siblings" do
     before :each do
       ig_tags.each_with_index do |tag, index|
-        Hashtag.create(label: tag, total_count_on_ig: index)
+        Hashtag.create(label: tag, total_count_on_ig: (index + 1))
       end
       Hashtag.create(label: 'candle', total_count_on_ig: 455)
       Hashtag.create(label: 'crockery', total_count_on_ig: 355)
@@ -61,7 +67,7 @@ describe Hashtag do
 
     it 'updates the related tag IDs' do
       Hashtag.update_siblings('cricket', ig_object)
-      expect(@tag.reload.related_hashtag_ids.count).to eq 20
+      expect(@tag.reload.related_hashtag_ids.count).to eq 13
     end
 
     it 'updates an existing hashtag if it exists' do

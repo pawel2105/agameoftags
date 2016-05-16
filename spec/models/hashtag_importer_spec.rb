@@ -16,16 +16,15 @@ describe HashtagImporter do
     it "saves the correct hashtag information" do
       importer = HashtagImporter.fetch_hashtag 'car', @user.id, @batch.id
       expect(Hashtag.first.label).to eq 'car'
-      expect(Hashtag.first.total_count_on_ig).to eq 43590
-      expect(Hashtag.last.total_count_on_ig).to eq 3264
       expect(Hashtag.last.label).to eq 'snowyday'
     end
 
-    it "updates existing hashtags" do
-      Hashtag.create(total_count_on_ig: 123, label: 'snowy')
+    it "updates the value for an existing hashtag" do
+      # InstagramInterface stubs API calls, returns 420 for count
+
+      h = Hashtag.create(total_count_on_ig: 5, label: 'car')
       importer = HashtagImporter.fetch_hashtag 'car', @user.id, @batch.id
-      expect(Hashtag.first.label).to eq 'snowy'
-      expect(Hashtag.first.total_count_on_ig).to eq 43590
+      expect(h.reload.total_count_on_ig).to eq 420
     end
   end
 end
