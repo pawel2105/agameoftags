@@ -24,4 +24,42 @@ describe Image do
       expect(@image.age_in_hours_since_first_fetched).to eq 144
     end
   end
+
+  describe "create_hashtags" do
+    it "creates new hashtags for a given image" do
+      image = create(:image)
+      tags  = ['one', 'two', 'three']
+      image.create_hashtags(tags)
+      expect(Hashtag.count).to eq 3
+    end
+
+    it "does not create new hashtags for existing hashtags" do
+      create(:hashtag, label: 'three')
+      image = create(:image)
+      tags  = ['one', 'two', 'three']
+      image.create_hashtags(tags)
+      expect(Hashtag.count).to eq 3
+    end
+  end
+
+  describe "update_hashtag_info" do
+    before :each do
+      @image = create(:image)
+      @tag = create(:hashtag, image: @image)
+    end
+
+    it "updates the correct hashtags with new data" do
+      @image.update_hashtag_info('23', 30)
+      correct_slot = @tag.timeslots.where(slot_name: '23').first
+      expect(correct_slot.number_of_likes).to eq 30
+      expect(correct_slot.number_of_photos).to eq 1
+    end
+
+    it "does not update incorrect hashtags with new data" do
+      @image.update_hashtag_info('23', 30)
+      bad_slot = @tag.timeslots.first
+      expect(bad_slot.number_of_likes).to eq 0
+      expect(bad_slot.number_of_photos).to eq 0
+    end
+  end
 end
