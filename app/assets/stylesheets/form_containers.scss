@@ -1,3 +1,53 @@
+.oic-btn-container {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.oic-form {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.oic-form-hidden {
+  display: none;
+}
+
+.onboarding-nav-btn {
+  background-color: $mainBlue;
+  border: none;
+  color: $white;
+  line-height: 1em!important;
+  font-size: 15px!important;
+  font-weight: 400!important;
+  padding: 10px;
+  transition: all 0.1s ease 0s;
+  width: 8em;
+  &:hover {
+    background: #0079CE;
+    cursor: pointer;
+  }
+}
+
+.onboarding-instruction-container {
+  background-color: $borderGray;
+  min-height: 100px;
+  margin: 1em auto 2em;
+  width: 90%;
+}
+
+.onboarding-container {
+  border: 1px solid $borderGray;
+  background-color: $veryLightGray;
+  margin: 3em auto;
+  padding-bottom: 2em;
+  width: 60%;
+}
+
+.onboarding-nav-btn-wrapper {
+  margin: 0.5em auto;
+  text-align: center;
+}
+
 .usr-mngmt-container {
   border: 1px solid $borderGray;
   background-color: $veryLightGray;
@@ -24,7 +74,7 @@
 }
 
 @media (max-width: 680px) {
- .usr-mngmt-container {
+ .usr-mngmt-container, .onboarding-container {
     margin: 2em auto;
     width: 90%;
   }

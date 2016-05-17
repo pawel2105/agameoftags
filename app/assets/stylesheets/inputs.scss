@@ -32,17 +32,17 @@
 }
 
 .profile-mngmt-email-btn {
-  background-color: $mainBlue;
+  background-color: $mainBlueHover;
   border: none;
   border-radius: 0 2px 2px 0;
   color: $white;
+  display: inline-block;
   line-height: 1em!important;
   font-size: 15px!important;
   font-weight: 400!important;
   padding: 10px;
   transition: all 0.3s ease 0s;
   min-width: 10em;
-  width: auto;
   &:hover {
     background: #0079CE;
     cursor: pointer;

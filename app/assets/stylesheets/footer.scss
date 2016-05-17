@@ -42,6 +42,12 @@
   width: 100%;
 }
 
+@media (min-width: 600px) {
+  .footer-wrapper {
+    max-height: 100px;
+  }
+}
+
 @media (max-width: 767px) {
   .copyright-notice {
     margin: 1em auto;

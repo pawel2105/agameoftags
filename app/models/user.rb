@@ -16,7 +16,7 @@
 
 class User < ActiveRecord::Base
   has_many :request_batches, dependent: :destroy
-  has_many :user_preferences, dependent: :destroy
+  has_one :user_preference, dependent: :destroy
 
   after_create :create_email_preferences
   validates :email, length: { in: 1..255, allow_nil: true }
@@ -32,6 +32,14 @@ class User < ActiveRecord::Base
     else
       User.create(uid: uid, ig_username: username, ig_access_token: access_token, last_login_time: time_of_request)
     end
+  end
+
+  def complete_intro!
+    user_preference.update_attributes(intro_complete: true)
+  end
+
+  def intro_still_outstanding?
+    user_preference.intro_complete == false
   end
 
   def can_search?

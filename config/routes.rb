@@ -18,6 +18,10 @@ Rails.application.routes.draw do
   get 'my-search-history' => 'profile#searches', as: :search_history
   get 'profile/email-saved' => 'profile#thanks', as: :thanks_for_email
 
+  # Onboarding
+  get 'welcome/onboarding-guide' => 'onboarding#intro', as: :new_user_tutorial
+  post 'welcome/complete-intro' => 'onboarding#complete_intro', as: :complete_intro
+
   # Profile management
   get 'profile' => 'profile#edit', as: :profile
   patch 'profile' => 'profile#update', as: :update_profile
