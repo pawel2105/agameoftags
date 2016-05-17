@@ -1,26 +1,5 @@
 <div class='main-container'>
-  <div class="tabs is-boxed">
-    <ul>
-      <li>
-        <%= link_to new_query_path do %>
-          <i class="fa fa-image"></i> New search
-        <% end %>
-      </li>
-
-      <li class="is-active">
-        <%= link_to search_history_path do %>
-          <i class="fa fa-music"></i> Previous searches
-        <% end %>
-      </li>
-
-      <li>
-        <%= link_to faq_path do %>
-          <i class="fa fa-film"></i> Help
-        <% end %>
-      </li>
-    </ul>
-  </div>
-
+  <%= render partial: 'shared/tabs' %>
   <%= render partial: 'mobile_search_container' %>
   <%= render partial: 'search_container' %>
 </div>

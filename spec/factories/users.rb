@@ -8,6 +8,8 @@
 #  uid             :string
 #  ig_username     :string
 #  ig_access_token :string
+#  email           :string
+#  full_name       :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #

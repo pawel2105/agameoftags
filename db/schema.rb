@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310174712) do
+ActiveRecord::Schema.define(version: 20160517132321) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,12 +62,23 @@ ActiveRecord::Schema.define(version: 20160310174712) do
     t.datetime "updated_at",                   null: false
   end
 
+  create_table "user_preferences", force: :cascade do |t|
+    t.integer  "user_id"
+    t.boolean  "emails_active",           default: true
+    t.boolean  "intro_complete",          default: false
+    t.boolean  "onboard_series_complete", default: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.text     "auth_digest"
     t.string   "last_login_time"
     t.string   "uid"
     t.string   "ig_username"
     t.string   "ig_access_token"
+    t.string   "email"
+    t.string   "full_name"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end

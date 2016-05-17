@@ -17,7 +17,7 @@
   font-family: 'Lato', sans-serif;
   font-size: 1.25em;
   font-weight: 300;
-  margin: 0 auto;
+  margin: 0 auto 1em;
   padding: 0.5em;
   width: 50%;
 }
@@ -174,10 +174,10 @@ a.breadcrumb-link {
   background-color: #2faafc;
   border-radius: 50%;
   display: inline-block;
-  height: 13px;
-  margin-right: 27px;
+  height: 10px;
+  margin-right: 24px;
   vertical-align: middle;
-  width: 13px;
+  width: 10px;
 }
 
 .faq-header {
@@ -188,7 +188,7 @@ a.breadcrumb-link {
 }
 
 .faq-item {
-  margin: 2em 0;
+  margin: 1.5em 0 1em;
 }
 
 .hero-container {
@@ -222,6 +222,8 @@ a.breadcrumb-link {
 }
 
 .hero-wrapper {
+  background: image-url('hero.jpg');
+  background-size: cover;
   display: block;
   margin-top: 80px;
   min-height: 70vh;
@@ -487,9 +489,9 @@ a.breadcrumb-link {
   }
 
   .hero-wrapper {
-    padding: 0;
+    padding: 1.5em 0;
     display: block;
-    margin: 2.5em auto;
+    margin: 0 auto;
     min-height: 1em;
     text-align: center;
     width: 100%;

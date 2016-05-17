@@ -15,7 +15,9 @@ class QueriesController < ApplicationController
       @results << HashtagImporter.fetch_hashtag(tag, @current_user.id, request_batch)
     end
 
-    unless @results.include?(:instagram_query_in_progress)
+    if !@results.include?(:instagram_query_in_progress)
+      return redirect_to query_waiting_path
+    else
       return redirect_to query_waiting_path
     end
   end

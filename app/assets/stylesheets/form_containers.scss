@@ -1,0 +1,31 @@
+.usr-mngmt-container {
+  border: 1px solid $borderGray;
+  background-color: $veryLightGray;
+  min-height: 100px;
+  margin: 3em auto;
+  width: 60%;
+}
+
+.user-mngmt-header {
+  font-size: 1.25em;
+  color: $naturalBlack;
+  padding: 1em;
+}
+
+.usr-mngmt-notice {
+  clear: both;
+  color: $lightGray;
+  font-size: 0.75em;
+  display: block;
+  margin: 0 auto;
+  padding-bottom: 1em;
+  padding-top: 2em;
+  width: 60%;
+}
+
+@media (max-width: 680px) {
+ .usr-mngmt-container {
+    margin: 2em auto;
+    width: 90%;
+  }
+}

@@ -8,12 +8,19 @@
 #  uid             :string
 #  ig_username     :string
 #  ig_access_token :string
+#  email           :string
+#  full_name       :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
 
 class User < ActiveRecord::Base
-  has_many :request_batches
+  has_many :request_batches, dependent: :destroy
+  has_many :user_preferences, dependent: :destroy
+
+  after_create :create_email_preferences
+  validates :email, length: { in: 1..255, allow_nil: true }
+  validates :full_name, length: { in: 1..255, allow_nil: true }
 
   def self.find_or_create_from_uid auth_hash
     time_of_request = DateTime.current.to_i
@@ -35,7 +42,15 @@ class User < ActiveRecord::Base
     ig_username == 'suggested_username'
   end
 
+  def set_email_address user_params
+    self.update_attributes(email: user_params[:email])
+  end
+
   private
+
+  def create_email_preferences
+    user_preferences.create()
+  end
 
   def self.attrs_from hash
     [hash.uid, hash.info.nickname, hash.credentials.token]

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
 
-  root 'home#test'
+  root 'home#intro'
 
   resources :batches, only: [:index]
 
@@ -14,8 +14,14 @@ Rails.application.routes.draw do
   # Profile and searches
   get 'new-search' => 'queries#new', as: :new_query
   get 'hashtag-query' => 'queries#search'
-  get 'hashtag-query/processing' => 'queries#waiting', as: :query_waiting
+  get 'query-being-processed' => 'queries#waiting', as: :query_waiting
   get 'my-search-history' => 'profile#searches', as: :search_history
+  get 'profile/email-saved' => 'profile#thanks', as: :thanks_for_email
+
+  # Profile management
+  get 'profile' => 'profile#edit', as: :profile
+  patch 'profile' => 'profile#update', as: :update_profile
+  patch 'profile-update' => 'profile#update_email_prefs', as: :update_email_prefs
 
   # Results page
   get 'query/:id/results' => 'results#show', as: :results

@@ -31,6 +31,32 @@
   background-color: $inputErrorColor;
 }
 
+.profile-mngmt-email-btn {
+  background-color: $mainBlue;
+  border: none;
+  border-radius: 0 2px 2px 0;
+  color: $white;
+  line-height: 1em!important;
+  font-size: 15px!important;
+  font-weight: 400!important;
+  padding: 10px;
+  transition: all 0.3s ease 0s;
+  min-width: 10em;
+  width: auto;
+  &:hover {
+    background: #0079CE;
+    cursor: pointer;
+  }
+}
+
+.profile-mngmt-email-field {
+  border: 1px solid #ccc;
+  height: 37px;
+  margin-left: 1em;
+  padding: 0.75em;
+  width: 50%;
+}
+
 .tag-search-input {
   border: 1px solid #ccc;
   padding: 0.35em;
@@ -45,6 +71,40 @@
 
 .top-hashtags-btn:hover {
   color: $white;
+}
+
+.user-mngmt-email-btn {
+  background-color: $mainBlue;
+  border: none;
+  border-radius: 0 2px 2px 0;
+  color: $white;
+  float: left;
+  line-height: 1em!important;
+  font-size: 15px!important;
+  font-weight: 400!important;
+  padding: 10px;
+  transition: all 0.3s ease 0s;
+  width: 25%;
+  &:hover {
+    background: #0079CE;
+    cursor: pointer;
+  }
+}
+
+.user-mngmt-email-field {
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  float: left;
+  height: 37px;
+  margin-left: 1em;
+  padding: 0.35em;
+  width: 70%;
+}
+
+.usr-mngmt-form {
+  clear: both;
+  display: block;
 }
 
 @media (max-width: 680px) {
@@ -74,5 +134,15 @@
 
   .tag-search-input {
     width: 100%;
+  }
+
+  .user-mngmt-email-btn {
+    width: auto;
+  }
+
+  .user-mngmt-email-field {
+    margin-left: 0.5em;
+    padding: 0.35em;
+    width: 60%;
   }
 }

@@ -8,6 +8,8 @@
 #  uid             :string
 #  ig_username     :string
 #  ig_access_token :string
+#  email           :string
+#  full_name       :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #
@@ -35,6 +37,13 @@ describe User do
     it "returns false if ig_username is not suggested_username" do
       user = create(:user, ig_username: 'anything_else')
       expect(user.admin?).to be false
+    end
+  end
+
+  feature "user_preferences" do
+    it "user gets user_preferences created upon creation" do
+      user = create(:user)
+      expect(user.user_preferences.count).to eq 1
     end
   end
 

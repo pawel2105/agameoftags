@@ -5,8 +5,16 @@
   margin-bottom: 0.75em;
   margin-right: 0.5em;
   padding: 8px;
+  &:hover {
+    background-color: $veryLightGray;
+    cursor: pointer;
+  }
 }
 
 .example-tag a {
+  color: $black;
+}
+
+a.hero-tag-link {
   color: $black;
 }

@@ -1,23 +1,5 @@
 <div class='main-container'>
-  <div class="tabs is-boxed">
-    <ul>
-      <li class="is-active">
-        <a><i class="fa fa-image"></i> New search</a>
-      </li>
-
-      <li>
-        <%= link_to search_history_path do %>
-          <i class="fa fa-music"></i> Previous searches
-        <% end %>
-      </li>
-
-      <li>
-        <%= link_to faq_path do %>
-          <i class="fa fa-film"></i> Help
-        <% end %>
-      </li>
-    </ul>
-  </div>
+  <%= render partial: 'shared/tabs' %>
 
   <div class="search-container">
     <% if @current_user.can_search? %>

@@ -5,9 +5,6 @@ class HomeController < ApplicationController
   def intro
   end
 
-  def test
-  end
-
   private
 
   def redirect_logged_in_user

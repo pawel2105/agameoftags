@@ -1,21 +1,278 @@
-intro.html.erb
+<div class="hero-wrapper">
+  <h1 class='agot-title'>
+    Find the best Instagram hashtags
+  </h1>
 
-<br />
-<br />
-<br />
-<br />
-<br />
+  <div class='hero-list'>
+    <p>
+      Your Instagram account probably has some amazing shots, right? Now you can get them noticed by thousands of other instagrammers. Sign up and let our intelligent filter find you the best hashtags. Get free trending superpowers by discovering which tags work best for right this moment!
+    </p>
+  </div>
 
-Add 3 hashtags:
+  <div class='hero-cta-wrapper'>
+    <%= button_to '/auth/instagram', class: 'hero-cta' do %>
+      <span class="nav-icon icon-instagram"></span>
+      <span class='link-text'>SIGN IN WITH INSTAGRAM</span>
+    <% end %>
+  </div>
 
-<%= form_tag '/hashtag-query', method: :get do %>
-  <%= text_field_tag 'hashtag_one' %> <br />
-  <%= text_field_tag 'hashtag_two' %> <br />
-  <%= text_field_tag 'hashtag_three' %> <br />
-  <%= submit_tag 'submit' %>
-<% end %>
+  <%= image_tag 'graph.png', style: 'width: 70%; margin: 0px auto; position: absolute; display: block; z-index: -1; opacity: 0.2; bottom: 120px; left: 0; right: 0;' %>
+</div>
 
-<br />
-<br />
-<br />
-<br />
+<div class='benefit-wrapper'>
+  <div class='agot-tags-examples-wrapper'>
+    <div class='agot-tags-examples-description'>
+      <h3>Lorem Ipsum</h3>
+
+      <div class='section-descriptor'>
+        Customers that engage in brand communities lead to increased revenue. That's the bottom line. But here are 6 other reasons to help convince you.
+      </div>
+    </div>
+
+    <div class='agot-tags-examples-container'>
+      <%= link_to 'https://www.instagram.com/explore/tags/moodygrams/', class: 'hero-tag-link' do %>
+        <span class='example-tag'>
+          #moodygrams
+        </span>
+      <% end %>
+
+      <%= link_to 'https://www.instagram.com/explore/tags/illgrammers/', class: 'hero-tag-link' do %>
+        <span class='example-tag'>
+          #illgrammers
+        </span>
+      <% end %>
+
+      <%= link_to 'https://www.instagram.com/explore/tags/way2ill/', class: 'hero-tag-link' do %>
+        <span class='example-tag'>
+          #way2ill
+        </span>
+      <% end %>
+
+      <%= link_to 'https://www.instagram.com/explore/tags/thecoolmagazine/', class: 'hero-tag-link' do %>
+        <span class='example-tag'>
+          #thecoolmagazine
+        </span>
+      <% end %>
+
+      <%= link_to 'https://www.instagram.com/explore/tags/businesswoman/', class: 'hero-tag-link' do %>
+        <span class='example-tag'>
+          #businesswoman
+        </span>
+      <% end %>
+
+      <%= link_to 'https://www.instagram.com/explore/tags/entrepreneurship/', class: 'hero-tag-link' do %>
+        <span class='example-tag'>
+          #entrepreneurship
+        </span>
+      <% end %>
+
+      <%= link_to 'https://www.instagram.com/explore/tags/vscocam/', class: 'hero-tag-link' do %>
+        <span class='example-tag'>
+          #vscocam
+        </span>
+      <% end %>
+
+      <%= link_to 'https://www.instagram.com/explore/tags/portraits/', class: 'hero-tag-link' do %>
+        <span class='example-tag'>
+          #portraits
+        </span>
+      <% end %>
+
+      <%= link_to 'https://www.instagram.com/explore/tags/xelfies/', class: 'hero-tag-link' do %>
+        <span class='example-tag'>
+          #xelfies
+        </span>
+      <% end %>
+
+      <%= link_to 'https://www.instagram.com/explore/tags/lookslikefilm/', class: 'hero-tag-link' do %>
+        <span class='example-tag'>
+          #lookslikefilm
+        </span>
+      <% end %>
+
+      <%= link_to 'https://www.instagram.com/explore/tags/streetfashion/', class: 'hero-tag-link' do %>
+        <span class='example-tag'>
+          #streetfashion
+        </span>
+      <% end %>
+
+      <%= link_to 'https://www.instagram.com/explore/tags/chasingemotions/', class: 'hero-tag-link' do %>
+        <span class='example-tag'>
+          #chasingemotions
+        </span>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class='agot-benefits'>
+  <h1 class='agot-benefits-header'>
+    Why you should use Mybema for your community
+  </h1>
+
+  <div class='section-descriptor'>
+    Whether you want a community for your products, your brand, a sports team, or an interest group, Mybema offers the following benefits.
+  </div>
+
+  <div class='agot-benefits-list'>
+    <div class='agot-benefits-list--item'>
+      <i class='icon-benefit icon-check'></i>
+      Start a community for free.
+    </div>
+
+    <div class='agot-benefits-list--item'>
+      <i class='icon-benefit icon-check'></i>
+      Be up and running in minutes.
+    </div>
+
+    <div class='agot-benefits-list--item'>
+      <i class='icon-benefit icon-check'></i>
+      Get SEO benefits from the content generated in your community.
+    </div>
+
+    <div class='agot-benefits-list--item'>
+      <i class='icon-benefit icon-check'></i>
+      Add informative articles to an accessible knowledgebase.
+    </div>
+
+    <div class='agot-benefits-list--item'>
+      <i class='icon-benefit icon-check'></i>
+      Improve customer satisfaction levels by participating in discussions.
+    </div>
+
+    <div class='agot-benefits-list--item'>
+      <i class='icon-benefit icon-check'></i>
+      Protect your brand's reputation by putting fires out early.
+    </div>
+
+    <div class='agot-benefits-list--item'>
+      <i class='icon-benefit icon-check'></i>
+      Having your customers participate in your community reduces churn.
+    </div>
+
+    <div class='agot-benefits-list--item'>
+      <i class='icon-benefit icon-check'></i>
+      Access your community's dashboard from any device.
+    </div>
+
+    <div class='agot-benefits-list--item'>
+      <i class='icon-benefit icon-check'></i>
+      Start and nurture real relationships with profitable customers.
+    </div>
+
+    <div class='agot-benefits-list--item'>
+      <i class='icon-benefit icon-check'></i>
+      Easily crowdsource new ideas via your community's discussions.
+    </div>
+
+    <div class='agot-benefits-list--item'>
+      <i class='icon-benefit icon-check'></i>
+      Engage your most enthusiastic fans and advocates.
+    </div>
+
+    <div class='agot-benefits-list--item'>
+      <i class='icon-benefit icon-check'></i>
+      Lower your customer support costs
+    </div>
+  </div>
+</div>
+
+<div class='benefit-wrapper'>
+  <h1 class='agot-benefits-header'>
+    See what our users say about us
+  </h1>
+
+  <div class='section-descriptor'>
+    Customers that engage in brand communities lead to increased revenue. That's the bottom line. But here are 6 other reasons to help convince you.
+  </div>
+
+  <div class='benefits-section'>
+    <div class='benefits-row'>
+      <div class="benefit-wrap">
+        <%= image_tag 'barcode.png', class: 'benefit-icon-large' %>
+
+        <div>
+          <h3>
+            Improve your offering
+          </h3>
+
+          <p class='benefits-paragraph'>
+            Feedback from your customers or users is invaluable. Good, qualitative information can improve your product or service more than you could ever do by yourself. Online discussions are a fantastic source of feedback.
+          </p>
+        </div>
+      </div>
+
+      <div class="benefit-wrap">
+        <%= image_tag 'wallet.png', class: 'benefit-icon-large' %>
+
+        <div>
+          <h3>
+            Increase LTV
+          </h3>
+
+          <p class='benefits-paragraph'>
+            Community participation has been proven to be a factor of loyalty and loyal customers are more valuable than once-off customers. By getting your customers to engage in your community, you are increasing their LTV.
+          </p>
+        </div>
+      </div>
+
+      <div class="benefit-wrap">
+        <%= image_tag 'lab.png', class: 'benefit-icon-large' %>
+
+        <div>
+          <h3>
+            Generate better ideas
+          </h3>
+
+          <p class='benefits-paragraph'>
+            People come up with ideas and share them with others all the time. If they're talking on your community platform, you get easy access to great new ideas.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class='benefits-row'>
+      <div class="benefit-wrap">
+        <%= image_tag 'profile.png', class: 'benefit-icon-large' %>
+
+        <div>
+          <h3>
+            Increase retention
+          </h3>
+
+          <p class='benefits-paragraph'>
+            Keep the same customers around for longer. People that participate in branded communities are less likely to churn.
+          </p>
+        </div>
+      </div>
+
+      <div class="benefit-wrap">
+        <%= image_tag 'issues.png', class: 'benefit-icon-large' %>
+
+        <div>
+          <h3>
+            Less support tickets
+          </h3>
+
+          <p class='benefits-paragraph'>
+            How many times have you had to answer the same question? Your community members can answer queries directed at you before you even have to!
+          </p>
+        </div>
+      </div>
+
+      <div class="benefit-wrap">
+        <%= image_tag 'clock.png', class: 'benefit-icon-large' %>
+
+        <div>
+          <h3>
+            Better response times
+          </h3>
+
+          <p class='benefits-paragraph'>
+            Dealing with fewer support queries means that you can handle the remaining ones far quicker than usual. Quicker turnaround times mean better customer service.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
