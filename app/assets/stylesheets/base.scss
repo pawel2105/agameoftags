@@ -80,3 +80,14 @@ strong {
 .hidden {
   display: none;
 }
+
+@media (max-width: 680px) {
+  button, input[type='submit'] {
+    font-size: 14px;
+    line-height: 1em;
+  }
+
+  .mobile-hidden {
+    display: none;
+  }
+}

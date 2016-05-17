@@ -47,10 +47,32 @@
   color: $white;
 }
 
-@media (max-width: 370px) {
+@media (max-width: 680px) {
   .hero-cta {
+    border-radius: 5px;
     display: block;
     margin: 0.5em auto;
+    width: auto;
+  }
+
+  .msc-results-btn {
+    background-color: $mainBlue;
+    border: none;
+    border-radius: 2px;
+    color: $white;
+    display: inline-block;
+    margin-top: 0.4em;
+    padding: 6px 10px;
+    transition: all 0.3s ease 0s;
+    text-align: center;
+    width: 100%;
+    &:hover {
+      color: $white;
+      background-color: $mainBlueHover;
+    }
+  }
+
+  .tag-search-input {
     width: 100%;
   }
 }

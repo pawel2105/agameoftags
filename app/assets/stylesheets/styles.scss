@@ -45,6 +45,26 @@
   text-decoration: none;
 }
 
+.agot-tags-examples-container {
+  display: inline-block;
+  text-align: left;
+  width: 40%;
+}
+
+.agot-tags-examples-description {
+  display: inline-block;
+  font-size: 1.5em;
+  text-align: left;
+  vertical-align: top;
+  width: 40%;
+}
+
+.agot-tags-examples-wrapper {
+  margin: 0 auto;
+  padding: 4em 0;
+  width: 80%;
+}
+
 .agot-title {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
@@ -107,8 +127,6 @@
   font-family: "Open Sans", sans-serif;
   font-weight: 700;
 }
-
-
 
 .breadcrumb-link {
   background-color: $borderGray;
@@ -254,32 +272,6 @@ a.breadcrumb-link {
   padding-bottom: 2em;
 }
 
-.nav-link {
-  background-color: $mainBlue;
-  border-radius: 5px;
-  padding: 8px 12px;
-  &:hover {
-    background-color: $mainBlueHover;
-  }
-}
-
-a.nav-link {
-  color: $white;
-}
-
-a.nav-link:hover {
-  text-decoration: none;
-}
-
-.nav-link-text, .link-text {
-  font-weight: lighter;
-  vertical-align: middle;
-}
-
-.nav-link-text {
-  padding-top: 2px;
-}
-
 .paragraph {
   font-size: 1.25em;
   margin: 1em auto;
@@ -343,17 +335,13 @@ a.nav-link:hover {
   width: 50vw;
 }
 
-.search-results {
-  padding: 0.5em 1.5em;
-}
-
 .section-descriptor {
   color: #8D888D;
   font-family: 'Open Sans', sans-serif;
   font-size: 1em;
   font-weight: 300;
   margin: 0.25em auto;
-  width: 70%;
+  width: 100%;
 }
 
 .subheader {
@@ -378,43 +366,100 @@ a.nav-link:hover {
 }
 
 @media (max-width: 767px) {
+  .agot-benefits {
+    margin: 0.5em auto;
+    width: 90%;
+  }
+
   .agot-benefits-header {
-    font-size: 2em;
+    font-size: 1.75em;
     font-weight: 400;
     margin: 0 auto 0.75em;
-    width: 90%;
+    width: 100%;
   }
 
   .agot-benefits-list {
     font-size: 1em;
-    width: 90%;
+    width: 100%;
   }
 
   .agot-benefits-list--item {
     margin: 0.5em 0 0 0;
   }
 
+  .agot-tags-examples-container {
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+
+  .agot-tags-examples-description {
+    display: block;
+    font-size: 1.5em;
+    text-align: center;
+    width: 100%;
+  }
+
+  .agot-tags-examples-wrapper {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+  }
+
   .agot-title {
     font-size: 2.5em;
     line-height: 0.9em;
-    margin-bottom: 0.5em;
+    margin: 0 auto 0.5em;
+    padding-top: 0;
+    width: 90%;
   }
 
   .benefit-wrap {
-    margin: 2em auto;
+    margin: 2.5em auto 0;
     width: 90%;
+  }
+
+  .benefit-wrap h3 {
+    margin: 0.75em 0;
+  }
+
+  .benefits-paragraph {
+    font-size: 1em;
+    width: 100%;
   }
 
   .benefits-row {
     display: block;
   }
 
-  .benefits-wrapper {
-    padding: 1em 0;
+  .benefits-section {
+    margin-top: 2em;
+  }
+
+  .benefit-wrapper {
+    padding-top: 1.75em;
+    padding-bottom: 1.75em;
+    padding-left: 1.25em;
+    padding-right: 1.25em;
   }
 
   .cut-short {
     width: 80%;
+  }
+
+  .faq-answer {
+    margin-left: 19px;
+    margin-top: 0.5em;
+  }
+
+  .faq-dot {
+    height: 8px;
+    margin-right: 8px;
+    width: 8px;
+  }
+
+  .faq-header {
+    font-size: 1.25em;
   }
 
   .hero-container {
@@ -442,7 +487,17 @@ a.nav-link:hover {
   }
 
   .hero-wrapper {
-    padding: 0 0.5em 1em;
+    padding: 0;
+    display: block;
+    margin: 2.5em auto;
+    min-height: 1em;
+    text-align: center;
+    width: 100%;
+  }
+
+  .main-container {
+    margin: 2em auto 1em;
+    width: 90%;
   }
 
   .paragraph {
@@ -451,7 +506,8 @@ a.nav-link:hover {
   }
 
   .section-descriptor {
-    width: 90%;
+    font-size: 0.9em;
+    margin: 1em auto;
   }
 
   .screenshot-wrapper {
@@ -467,5 +523,9 @@ a.nav-link:hover {
     font-size: 1.2em;
     margin: 0 auto;
     width: 90%;
+  }
+
+  .tag {
+    vertical-align: middle;
   }
 }
