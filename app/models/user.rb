@@ -43,6 +43,7 @@ class User < ActiveRecord::Base
   end
 
   def can_search?
+    return true
     request_batches.where("created_at >= ?", Time.zone.now.beginning_of_day).none?
   end
 
@@ -57,7 +58,7 @@ class User < ActiveRecord::Base
   private
 
   def create_email_preferences
-    user_preferences.create()
+    UserPreference.create(user: self)
   end
 
   def self.attrs_from hash

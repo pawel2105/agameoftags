@@ -35,13 +35,16 @@
 .ht-form-container {
   display: inline-block;
   width: 50%;
-  padding: 0;
+  padding: 0 0 1em 0;
 }
 
 .ht-form-error-container {
   background-color: $inputErrorColor;
-  margin: 2em 0;
+  margin: 1em 0 0;
   padding: 1em 1.5em 0.5em;
+  p {
+    font-weight: 400!important;
+  }
 }
 
 .ht-explanations-container {
@@ -95,7 +98,7 @@
   min-height: 4em;
 }
 
-.search-container {
+.search-container, .profile-search-container {
   border-bottom: 1px solid $borderGray;
   border-left: 1px solid $borderGray;
   border-right: 1px solid $borderGray;
@@ -155,6 +158,12 @@
     width: 100%;
   }
 
+  .ht-form-error-container {
+    background-color: $inputErrorColor;
+    margin: 3em 1em 0;
+    padding: 1em 1.5em 0.5em;
+  }
+
   .ht-form-container {
     display: block;
     width: 100%;
@@ -199,7 +208,7 @@
     padding: 8px;
   }
 
-  .search-container {
+  .profile-search-container {
     display: none;
   }
 

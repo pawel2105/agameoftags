@@ -5,6 +5,7 @@ $( document ).ready(function() {
       $warning = $('#ht-warning'),
       $ETwarning = $('#empty-tags-warning'),
       $DTwarning = $('#duplicate-tags-warning'),
+      $ISTwarning = $('#illegal-string-tags-warning'),
       pressedSearch = false,
       duplicateHashtagsDetected = false;
 
@@ -34,13 +35,23 @@ $( document ).ready(function() {
     $DTwarning.addClass('hidden');
   }
 
+  function stripOfHashtagSymbol(tag) {
+    if (tag[0] === '#') {
+      var stripped = tag.substring(1)
+      return stripped;
+    } else {
+      return tag;
+    }
+  }
+
   function checkForDuplicates() {
     var tags = [];
 
     [$tagOne, $tagTwo, $tagThree].forEach(function(input_field) {
       var value = input_field.val();
       if (value.length > 0) {
-        tags.push(value);
+        checkedValue = stripOfHashtagSymbol(value)
+        tags.push(checkedValue);
       }
     });
 
@@ -56,15 +67,27 @@ $( document ).ready(function() {
 
   function displayWarnings() {
     var warnings = [];
+    var illegalStringWarnings = [];
 
     $('#hashtag_one, #hashtag_two, #hashtag_three').each(function() {
       if ($(this).hasClass('input-warning')) {
         $warning.removeClass('hidden');
-        warnings.push($(this).val());
+
+        if ($(this).val().length === 0) {
+          warnings.push($(this).val());
+        } else {
+          illegalStringWarnings.push($(this).val());
+        }
       } else {
         $warning.addClass('hidden');
       }
     });
+
+    if (illegalStringWarnings.length > 0) {
+      $ISTwarning.removeClass('hidden');
+    } else {
+      $ISTwarning.addClass('hidden');
+    }
 
     if (warnings.length > 0) {
       $ETwarning.removeClass('hidden');
@@ -77,7 +100,11 @@ $( document ).ready(function() {
 
   function checkFieldsForValues() {
     [$tagOne, $tagTwo, $tagThree].forEach(function(input_field) {
-      if( input_field.val().length === 0 ) {
+      var cleaned_input = input_field.val().replace(/ /g, '');
+
+      if (cleaned_input.length === 0) {
+        input_field.addClass('input-warning');
+      } else if (cleaned_input.indexOf(' ') > 0) {
         input_field.addClass('input-warning');
       } else {
         input_field.removeClass('input-warning');

@@ -23,6 +23,8 @@ class HashtagImporter
   end
 
   def check_how_to_perform_request tag_type, request_id, related_tag=nil
+    puts "SEARCHING TYPE: #{tag_type.inspect}"
+
     if tag_type == :related_tag
       make_api_request_for(related_tag)
     else
@@ -59,11 +61,11 @@ class HashtagImporter
   def fetch_and_save_data_for_single_tag api_fetcher, tag
     data_for_tag = api_fetcher.single_tag_data(tag)
 
-    if data_for_tag != :ig_status_429
-      import(tag, data_for_tag)
-    else
+    if data_for_tag == :ig_status_429
       HashtagWorker.perform_in(30.minutes, tag, @user_id, @request_batch_id)
       return :ig_status_429
+    else
+      import(tag, data_for_tag)
     end
   end
 
@@ -105,7 +107,10 @@ class HashtagImporter
 
   def import tag, data_hash
     data_hash.each do |obj|
-      Hashtag.update_or_create(tag, obj[1][:media_count])
+      if obj[0] == 'data'
+        media_count = obj[1][:media_count] || obj[1]['media_count']
+        Hashtag.update_or_create(tag, media_count)
+      end
     end
   end
 end

@@ -18,3 +18,17 @@
 a.hero-tag-link {
   color: $black;
 }
+
+.hero--dark-wrapper {
+  background: image-url('article_transition.png') repeat-x scroll center bottom rgba(0,0,0,0.15);
+  height: 100%;
+  padding: 40px 0.5em;
+  width: 100%;
+  @media only screen and (min-width: 768px) {
+    background: image-url('article_transition.png') repeat-x scroll center bottom rgba(0,0,0,0.2);
+    background-size: cover;
+    display: block;
+    min-height: 70vh;
+    padding: 1.5em 0;
+  }
+}

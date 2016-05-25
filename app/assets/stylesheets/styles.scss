@@ -46,22 +46,23 @@
 }
 
 .agot-tags-examples-container {
-  display: inline-block;
-  text-align: left;
+  display: block;
+  margin: 2em auto;
+  text-align: center;
   width: 40%;
 }
 
 .agot-tags-examples-description {
-  display: inline-block;
+  display: block;
   font-size: 1.5em;
-  text-align: left;
-  vertical-align: top;
+  margin: 0 auto;
+  text-align: center;
   width: 40%;
 }
 
 .agot-tags-examples-wrapper {
   margin: 0 auto;
-  padding: 4em 0;
+  padding: 1em 0;
   width: 80%;
 }
 
@@ -69,7 +70,7 @@
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   font-size: 3em;
-  color: #3C4E55;
+  color: $white;
   padding-top: 4vh;
   margin: 0.25em auto;
   width: 60%;
@@ -167,7 +168,7 @@ a.breadcrumb-link {
 .faq-answer {
   line-height: 1.75em;
   margin-left: 43px;
-  margin-top: 1em;
+  margin-top: 0.5em;
 }
 
 .faq-dot {
@@ -182,7 +183,7 @@ a.breadcrumb-link {
 
 .faq-header {
   display: inline-block;
-  font-size: 2em;
+  font-size: 1.65em;
   font-weight: bold;
   vertical-align: middle;
 }
@@ -204,12 +205,12 @@ a.breadcrumb-link {
 }
 
 .hero-list {
-  margin: 1.5em auto;
+  margin: 3.5em auto;
   width: 60%;
 }
 
 .hero-list p {
-  color: #212121;
+  color: $white;
   font-weight: 300;
   font-size: 1.2em;
   margin-bottom: 0.5em;
@@ -227,7 +228,6 @@ a.breadcrumb-link {
   display: block;
   margin-top: 80px;
   min-height: 70vh;
-  padding: 40px 0.5em;
   text-align: center;
   width: 100%;
 }
@@ -337,12 +337,25 @@ a.breadcrumb-link {
   width: 50vw;
 }
 
+.agot-tags-header-first {
+  font-size: 1.6em;
+}
+
+.section-descriptor-first {
+  color: #8D888D;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.75em;
+  font-weight: 300;
+  margin: 0.25em 0;
+  width: 90%;
+}
+
 .section-descriptor {
   color: #8D888D;
   font-family: 'Open Sans', sans-serif;
   font-size: 1em;
   font-weight: 300;
-  margin: 0.25em auto;
+  margin: 0.75em auto;
   width: 100%;
 }
 
@@ -355,6 +368,17 @@ a.breadcrumb-link {
 .tag {
   border: 1px solid $borderGray;
   box-shadow: none;
+}
+
+.tag-inline {
+  vertical-align: middle!important;
+  height: auto!important;
+  padding: 2px 4px!important;
+}
+
+.will-email-img-wrapper {
+  margin: 0 auto 1.5em;
+  width: 100px;
 }
 
 .za-flag {
@@ -451,7 +475,6 @@ a.breadcrumb-link {
 
   .faq-answer {
     margin-left: 19px;
-    margin-top: 0.5em;
   }
 
   .faq-dot {
@@ -489,7 +512,6 @@ a.breadcrumb-link {
   }
 
   .hero-wrapper {
-    padding: 1.5em 0;
     display: block;
     margin: 0 auto;
     min-height: 1em;

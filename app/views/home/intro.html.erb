@@ -1,31 +1,33 @@
 <div class="hero-wrapper">
-  <h1 class='agot-title'>
-    Find the best Instagram hashtags
-  </h1>
+  <div class='hero--dark-wrapper'>
+    <h1 class='agot-title'>
+      Find the best Instagram hashtags
+    </h1>
 
-  <div class='hero-list'>
-    <p>
-      Your Instagram account probably has some amazing shots, right? Now you can get them noticed by thousands of other instagrammers. Sign up and let our intelligent filter find you the best hashtags. Get free trending superpowers by discovering which tags work best for right this moment!
-    </p>
+    <div class='hero-list'>
+      <p>
+        Your Instagram account probably has some amazing shots, right? Now you can get them noticed by thousands of other instagrammers. Sign up and let our intelligent filter find you the best hashtags. Get free trending superpowers by discovering which tags work best for right this moment!
+      </p>
+    </div>
+
+    <div class='hero-cta-wrapper'>
+      <%= button_to '/auth/instagram', class: 'hero-cta' do %>
+        <span class="nav-icon icon-instagram"></span>
+        <span class='link-text'>SIGN IN WITH INSTAGRAM</span>
+      <% end %>
+    </div>
   </div>
-
-  <div class='hero-cta-wrapper'>
-    <%= button_to '/auth/instagram', class: 'hero-cta' do %>
-      <span class="nav-icon icon-instagram"></span>
-      <span class='link-text'>SIGN IN WITH INSTAGRAM</span>
-    <% end %>
-  </div>
-
-  <%= image_tag 'graph.png', style: 'width: 70%; margin: 0px auto; position: absolute; display: block; z-index: -1; opacity: 0.2; bottom: 120px; left: 0; right: 0;' %>
 </div>
 
 <div class='benefit-wrapper'>
   <div class='agot-tags-examples-wrapper'>
     <div class='agot-tags-examples-description'>
-      <h3>Lorem Ipsum</h3>
+      <h3 class='agot-tags-header-first'>
+        No funny business
+      </h3>
 
-      <div class='section-descriptor'>
-        Customers that engage in brand communities lead to increased revenue. That's the bottom line. But here are 6 other reasons to help convince you.
+      <div class='section-descriptor-first'>
+        We've created a clean, simple interface to help you find the best hashtags. No adverts, no spam, no distractions.
       </div>
     </div>
 
@@ -107,141 +109,82 @@
 
 <div class='agot-benefits'>
   <h1 class='agot-benefits-header'>
-    Why you should use Mybema for your community
+    But aren't hashtags just so 2012?
   </h1>
 
   <div class='section-descriptor'>
-    Whether you want a community for your products, your brand, a sports team, or an interest group, Mybema offers the following benefits.
+    Not at all. Hashtags are still the best way to find photos on Instagram. They're also the best way to get your photos discovered.
   </div>
 
   <div class='agot-benefits-list'>
     <div class='agot-benefits-list--item'>
       <i class='icon-benefit icon-check'></i>
-      Start a community for free.
+      Hashtags organize and categorize images. This helps get your content discovered.
     </div>
 
     <div class='agot-benefits-list--item'>
       <i class='icon-benefit icon-check'></i>
-      Be up and running in minutes.
+      Your hashtags are published when people share your images on Facebook.
     </div>
 
     <div class='agot-benefits-list--item'>
       <i class='icon-benefit icon-check'></i>
-      Get SEO benefits from the content generated in your community.
+      Get your content in front of all searches for specific keywords and phrases.
     </div>
 
     <div class='agot-benefits-list--item'>
       <i class='icon-benefit icon-check'></i>
-      Add informative articles to an accessible knowledgebase.
+      Find conversations and campaigns that your audiences participate in.
     </div>
 
     <div class='agot-benefits-list--item'>
       <i class='icon-benefit icon-check'></i>
-      Improve customer satisfaction levels by participating in discussions.
+      Discover what tags are related to your brand's unique hashtags.
     </div>
 
     <div class='agot-benefits-list--item'>
       <i class='icon-benefit icon-check'></i>
-      Protect your brand's reputation by putting fires out early.
+      Find Instagram influencers for your brand by uncovering your hashtag network.
     </div>
 
     <div class='agot-benefits-list--item'>
       <i class='icon-benefit icon-check'></i>
-      Having your customers participate in your community reduces churn.
+      Hashtags can help you discover tangential audiences.
     </div>
 
     <div class='agot-benefits-list--item'>
       <i class='icon-benefit icon-check'></i>
-      Access your community's dashboard from any device.
+      People are already using hashtags when searching within Instagram.
     </div>
 
     <div class='agot-benefits-list--item'>
       <i class='icon-benefit icon-check'></i>
-      Start and nurture real relationships with profitable customers.
-    </div>
-
-    <div class='agot-benefits-list--item'>
-      <i class='icon-benefit icon-check'></i>
-      Easily crowdsource new ideas via your community's discussions.
-    </div>
-
-    <div class='agot-benefits-list--item'>
-      <i class='icon-benefit icon-check'></i>
-      Engage your most enthusiastic fans and advocates.
-    </div>
-
-    <div class='agot-benefits-list--item'>
-      <i class='icon-benefit icon-check'></i>
-      Lower your customer support costs
+      Hashtags expand the reach of your Instagram photos beyond just your followers.
     </div>
   </div>
 </div>
 
 <div class='benefit-wrapper'>
   <h1 class='agot-benefits-header'>
-    See what our users say about us
+    What makes this website different?
   </h1>
 
   <div class='section-descriptor'>
-    Customers that engage in brand communities lead to increased revenue. That's the bottom line. But here are 6 other reasons to help convince you.
+    Other than being so much prettier than those other hashtag finding websites, what should you expect from A Game of Tags?
   </div>
 
   <div class='benefits-section'>
     <div class='benefits-row'>
       <div class="benefit-wrap">
-        <%= image_tag 'barcode.png', class: 'benefit-icon-large' %>
-
-        <div>
-          <h3>
-            Improve your offering
-          </h3>
-
-          <p class='benefits-paragraph'>
-            Feedback from your customers or users is invaluable. Good, qualitative information can improve your product or service more than you could ever do by yourself. Online discussions are a fantastic source of feedback.
-          </p>
-        </div>
-      </div>
-
-      <div class="benefit-wrap">
-        <%= image_tag 'wallet.png', class: 'benefit-icon-large' %>
-
-        <div>
-          <h3>
-            Increase LTV
-          </h3>
-
-          <p class='benefits-paragraph'>
-            Community participation has been proven to be a factor of loyalty and loyal customers are more valuable than once-off customers. By getting your customers to engage in your community, you are increasing their LTV.
-          </p>
-        </div>
-      </div>
-
-      <div class="benefit-wrap">
         <%= image_tag 'lab.png', class: 'benefit-icon-large' %>
 
         <div>
           <h3>
-            Generate better ideas
+            Find thematic tags
           </h3>
 
           <p class='benefits-paragraph'>
-            People come up with ideas and share them with others all the time. If they're talking on your community platform, you get easy access to great new ideas.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <div class='benefits-row'>
-      <div class="benefit-wrap">
-        <%= image_tag 'profile.png', class: 'benefit-icon-large' %>
-
-        <div>
-          <h3>
-            Increase retention
-          </h3>
-
-          <p class='benefits-paragraph'>
-            Keep the same customers around for longer. People that participate in branded communities are less likely to churn.
+            We don't just look for the most popular hashtags. We fetch hashtags on an image-by-image basis to provide the best possible results.
           </p>
         </div>
       </div>
@@ -251,11 +194,11 @@
 
         <div>
           <h3>
-            Less support tickets
+            Start collecting hashtags
           </h3>
 
           <p class='benefits-paragraph'>
-            How many times have you had to answer the same question? Your community members can answer queries directed at you before you even have to!
+            Throw away that pocket notebook because our users get to access every hashtag they've ever researched.
           </p>
         </div>
       </div>
@@ -265,11 +208,11 @@
 
         <div>
           <h3>
-            Better response times
+            Best for now
           </h3>
 
           <p class='benefits-paragraph'>
-            Dealing with fewer support queries means that you can handle the remaining ones far quicker than usual. Quicker turnaround times mean better customer service.
+            Not only do we find the best suited hashtags for you, but we find the best hashtags that have historically performed best for the time and day of your search.
           </p>
         </div>
       </div>

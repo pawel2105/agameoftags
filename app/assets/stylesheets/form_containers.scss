@@ -28,19 +28,38 @@
   }
 }
 
-.onboarding-instruction-container {
-  background-color: $borderGray;
-  min-height: 100px;
-  margin: 1em auto 2em;
+.tut-img {
+  margin: auto;
   width: 90%;
+}
+
+.onboard-instruction-paragraph {
+  line-height: 1.5em;
+  margin-bottom: 0.75em;
+}
+
+.onboarding-instruction-container {
+  margin: 2em auto 1em;
+  width: 84%;
+}
+
+.onboarding-instruction-subcontainer {
+  display: inline-block;
+  width: 65%;
+}
+
+.onboarding-instruction-imgcontainer {
+  display: inline-block;
+  vertical-align: top;
+  width: 30%;
 }
 
 .onboarding-container {
   border: 1px solid $borderGray;
   background-color: $veryLightGray;
-  margin: 3em auto;
+  margin: 1.5em auto;
   padding-bottom: 2em;
-  width: 60%;
+  width: 80%;
 }
 
 .onboarding-nav-btn-wrapper {

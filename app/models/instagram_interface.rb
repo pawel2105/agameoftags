@@ -38,7 +38,7 @@ class InstagramInterface
 
   def real_instagram_result tag
     begin
-      Rails.logger.warn "\n\nSINGLE RESULT ATTEMPT\n\n"
+      puts "\n\nSINGLE RESULT ATTEMPT\n\n"
       response = open("https://api.instagram.com/v1/tags/#{tag}?access_token=#{@token}").read
       response_object = JSON.parse(response)
       return response_object
@@ -51,7 +51,7 @@ class InstagramInterface
     results_list = []
 
     begin
-      Rails.logger.warn "\n\nMEDIA RESULT ATTEMPT\n\n"
+      puts "\n\nMEDIA RESULT ATTEMPT\n\n"
       response = open("https://api.instagram.com/v1/tags/#{@tag}/media/recent?access_token=#{@token}").read
       response_object = JSON.parse(response)
 
