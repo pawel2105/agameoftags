@@ -1,0 +1,34 @@
+---
+ruby: ruby-2.2.2
+app_name: agameoftags
+rvm_gpg_keys: 'D39DC0E3'
+app_directory: /home/deploy/agameoftags/
+git_repository: git@github.com:pawel2105/agameoftags.git
+# generated using `openssl passwd -salt salty -1 mypass`
+deploy_password: '$1$salty$WoG5tu8Y63f.rmnpDr9lz0'
+system_packages:
+  - build-essential
+  - git
+  - gcc
+  - make
+  - libxml2
+  - git
+  - patch
+  - autoconf
+  - automake
+  - libtool
+  - bison
+  - gawk
+  - libreadline6-dev
+  - zlib1g-dev
+  - libssl-dev
+  - libyaml-dev
+  - libsqlite3-dev
+  - sqlite3
+  - libgdbm-dev
+  - libncurses5-dev
+  - pkg-config
+  - libffi-dev
+  - libpq-dev
+  - imagemagick
+  - libgmp-dev

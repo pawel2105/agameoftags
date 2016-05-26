@@ -1,0 +1,8 @@
+[production]
+107.170.104.211
+
+[localhost]
+localhost ansible_python_interpreter=/usr/bin/python
+
+[production:vars]
+server_name=www.example.com

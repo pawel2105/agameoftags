@@ -1,0 +1,41 @@
+- name: Create deployment directory
+  file: path={{app_directory}} owner=deploy group=deploy state=directory
+
+- name: Clone repo from github
+  git: repo={{ git_repository }} dest={{ app_directory }} accept_hostkey=yes force=yes key_file=/Users/pawel/.ssh/id_rsa
+
+- name: Make shared directories
+  file: path={{app_directory}}/{{item}} group=deploy owner=deploy state=directory
+  with_items:
+    - tmp/puma
+    - tmp/sockets
+    - log
+    - public
+    - bundle
+    - bin
+    - config/puma
+    - uploads/user_pictures
+  tags: shared
+
+- name: Add puma config file
+  template: src=puma_production.j2 dest={{app_directory}}config/puma/production.rb force=yes mode=755
+
+- name: Install database.yml
+  template: src=database.yml.j2 dest={{app_directory}}config/database.yml force=yes mode=755 owner=deploy
+
+- name: Copy secrets file
+  template: src=secrets.yml.j2 dest={{app_directory}}config/secrets.yml force=yes mode=755 owner=deploy
+- name: setup database
+  command: bash -lc "cd {{ app_directory}} RACK_ENV=production bundle exec rake db:setup"
+
+- name: bundle install
+  command: bash -lc "cd {{ app_directory }} && bundle install --without development test"
+  retries: 3
+  delay: 10
+
+- name: run migrations
+  command: bash -lc "RACK_ENV=production bundle exec rake db:migrate" chdir={{app_directory}}
+
+- name: start puma
+  command: bash -lc "RACK_ENV=production bundle exec puma -C config/puma/production.rb -d" chdir={{ app_directory}}
+  notify: restart nginx

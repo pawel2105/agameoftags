@@ -1,0 +1,35 @@
+upstream agameoftags {
+  server unix:/home/deploy/agameoftags/tmp/sockets/puma.sock;
+}
+
+server {
+  listen 80;
+  server_name '{{ ansible_default_ipv4.address }}';
+  root /home/deploy/agameoftags/public;
+
+  location / {
+    proxy_pass http://agameoftags;
+    proxy_set_header Host $host;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+  }
+
+  location ~ ^/uploads/ {
+    root /home/deploy/agameoftags/public;
+    expires 1y;
+    add_header Cache-Control public;
+    add_header ETag "";
+    break;
+  }
+
+  location ~ ^/assets/ {
+    expires 1y;
+    root /home/deploy/agameoftags/public;
+    add_header Cache-Control public;
+    add_header ETag "";
+    break;
+  }
+
+  location ~ ^/(robots.txt|sitemap.xml.gz|whatsapp-icon.png|telegram-icon.png)/  {
+    root /home/deploy/agameoftags/public;
+  }
+}
