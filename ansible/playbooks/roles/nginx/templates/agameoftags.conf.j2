@@ -3,33 +3,64 @@ upstream agameoftags {
 }
 
 server {
-  listen 80;
-  server_name '{{ ansible_default_ipv4.address }}';
+  server_name www.agameoftags.com;
+  return 301 https://agameoftags.com$request_uri;
+}
+
+server {
+  listen [::]:80 default ipv6only=on;
+  server_name agameoftags.com;
   root /home/deploy/agameoftags/public;
 
   location / {
-    proxy_pass http://agameoftags;
-    proxy_set_header Host $host;
-    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-  }
+    proxy_set_header X-Real-IP         $remote_addr;
+    proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto http;
+    proxy_set_header Host              $http_host;
+    proxy_redirect off;
 
-  location ~ ^/uploads/ {
-    root /home/deploy/agameoftags/public;
-    expires 1y;
-    add_header Cache-Control public;
-    add_header ETag "";
-    break;
+    if (-f $request_filename) {
+      break;
+    }
+
+    proxy_pass http://agameoftags;
   }
 
   location ~ ^/assets/ {
-    expires 1y;
+    gzip_static on;
+    expires max;
     root /home/deploy/agameoftags/public;
     add_header Cache-Control public;
-    add_header ETag "";
-    break;
+  }
+}
+
+server {
+  listen 443;
+  server_name agameoftags.com;
+  root /home/deploy/agameoftags/public;
+
+  ssl on;
+  ssl_certificate     /etc/nginx/server.crt;
+  ssl_certificate_key /etc/nginx/server.key;
+
+  location / {
+    proxy_set_header X-Real-IP         $remote_addr;
+    proxy_set_header X-Forwarded-For   $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto https;
+    proxy_set_header Host              $http_host;
+    proxy_redirect off;
+
+    if (-f $request_filename) {
+      break;
+    }
+
+    proxy_pass http://agameoftags;
   }
 
-  location ~ ^/(robots.txt|sitemap.xml.gz|whatsapp-icon.png|telegram-icon.png)/  {
+  location ~ ^/assets/ {
+    gzip_static on;
+    expires max;
     root /home/deploy/agameoftags/public;
+    add_header Cache-Control public;
   }
 }
