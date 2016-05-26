@@ -5,12 +5,12 @@ default: &default
 
 development:
   <<: *default
-  database: agameoftones_development
+  database: agameoftags_development
 
 test:
   <<: *default
-  database: agameoftones_test
+  database: agameoftags_test
 
 production:
   <<: *default
-  database: agameoftones_production
+  database: agameoftags_production

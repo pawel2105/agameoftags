@@ -7,7 +7,10 @@
   delay: 10
 
 - name: run migrations
-  command: bash -lc "RACK_ENV=production bundle exec rake db:migrate" chdir={{app_directory}}
+  command: bash -lc "RAILS_ENV=production bundle exec rake db:migrate" chdir={{app_directory}}
+
+- name: precompile assets
+  command: bash -lc "RAILS_ENV=production bundle exec rake assets:precompile" chdir={{app_directory}}
 
 - name: get pid id
   command: cat {{ app_directory }}tmp/puma.pid
