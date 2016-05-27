@@ -11,8 +11,6 @@ gem 'pg'
 gem 'puma'
 gem 'sinatra', :require => nil
 gem 'activerecord-import', require: false
-gem 'elasticsearch-model', require: false
-gem 'elasticsearch-rails', require: false
 gem 'sidekiq'
 
 group :development do

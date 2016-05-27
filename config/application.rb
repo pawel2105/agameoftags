@@ -12,9 +12,6 @@ class ActiveRecord::Base
   end
 end
 
-require 'elasticsearch/model'
-require 'elasticsearch/rails'
-
 Bundler.require(*Rails.groups)
 
 module Agameoftags

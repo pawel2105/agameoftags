@@ -14,9 +14,6 @@
 #
 
 class Hashtag < ActiveRecord::Base
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
-
   belongs_to :image
   has_many :timeslots
 
