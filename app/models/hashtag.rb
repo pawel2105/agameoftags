@@ -20,8 +20,8 @@ class Hashtag < ActiveRecord::Base
   after_create :add_timeslots
 
   def self.update_or_create name, count
-    if existing = self.where(label: name).first
-      existing.update(total_count_on_ig: count)
+    if self.where(label: name).any?
+      self.where(label: name).first.update(total_count_on_ig: count)
     else
       create(label: name, total_count_on_ig: count)
     end
