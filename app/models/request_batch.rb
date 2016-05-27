@@ -27,5 +27,10 @@ class RequestBatch < ActiveRecord::Base
 
   def mark_as_complete!
     update_attributes(complete: true)
+    notify_subscriber
+  end
+
+  def notify_subscriber
+    TransactionMailer.notify_subscriber(user_id).deliver_now if user.emailable?
   end
 end

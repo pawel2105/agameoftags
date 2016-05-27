@@ -55,6 +55,10 @@ class User < ActiveRecord::Base
     self.update_attributes(email: user_params[:email])
   end
 
+  def emailable?
+    self.email.present? && (user_preference.emails_active == true)
+  end
+
   private
 
   def create_email_preferences

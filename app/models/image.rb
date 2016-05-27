@@ -19,9 +19,17 @@ class Image < ActiveRecord::Base
   end
 
   def create_hashtags tags
+    tags_to_update = []
+
     tags.each do |tag|
       next if Hashtag.where(label: tag).any?
-      hashtags.create(raw_related_hashtags: tags, label: tag)
+      t = hashtags.create(related_hashtags: tags, raw_related_hashtags: tags, label: tag)
+      tags_to_update.push(t)
+    end
+
+    tag_ids = tags_to_update.map(&:id)
+    tags_to_update.each do |x|
+      x.update_attributes(related_hashtag_ids: tag_ids)
     end
   end
 

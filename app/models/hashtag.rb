@@ -36,6 +36,13 @@ class Hashtag < ActiveRecord::Base
     [current_related_tags,possibly_related_tags].flatten.uniq.compact
   end
 
+  def self.update_own_related_tags tag, object
+    hashtag = Hashtag.where(label: tag).first
+    tags    = establish_hashtag_mix(object, hashtag)
+    tag_ids = Hashtag.where(label: tags).map(&:id)
+    hashtag.update_attributes(related_hashtags: tags, raw_related_hashtags: tags, related_hashtag_ids: tag_ids)
+  end
+
   def self.update_siblings tag, object
     queried_tag, best_labels, best_ids = self.fetch_best_related_tags(tag, object)
     queried_tag.update(related_hashtags: best_labels, raw_related_hashtags: best_labels, related_hashtag_ids: best_ids)

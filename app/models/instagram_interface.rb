@@ -31,6 +31,9 @@ class InstagramInterface
     response = error.io
     status = response.status
 
+    puts "ERROR response: #{response}"
+    puts "ERROR status: #{status}"
+
     if status.include?(429) || status.include?('429')
       return :ig_status_429
     end
@@ -38,7 +41,7 @@ class InstagramInterface
 
   def real_instagram_result tag
     begin
-      puts "\n\nSINGLE RESULT ATTEMPT\n\n"
+      puts "\n\nSINGLE RESULT ATTEMPT for #{tag}\n\n"
       response = open("https://api.instagram.com/v1/tags/#{tag}?access_token=#{@token}").read
       response_object = JSON.parse(response)
       return response_object

@@ -13,6 +13,7 @@ class HashtagImporter
   end
 
   def fetch_details_for_related_tags
+    puts "fetch_details_for_related_tags for #{@tag}"
     parent_tag = Hashtag.where(label: @tag).first
 
     if parent_tag
@@ -23,8 +24,6 @@ class HashtagImporter
   end
 
   def check_how_to_perform_request tag_type, request_id, related_tag=nil
-    puts "SEARCHING TYPE: #{tag_type.inspect}"
-
     if tag_type == :related_tag
       make_api_request_for(related_tag)
     else
@@ -75,7 +74,7 @@ class HashtagImporter
   end
 
   def record_query
-    SearchRequest.create(query: @tag, last_api_search: Time.now)
+    SearchRequest.create(query: @tag, last_api_search: Time.now, search_count: 1)
   end
 
   def increment_completeness_of_search_request_batch
@@ -84,6 +83,7 @@ class HashtagImporter
 
   def make_api_request_for related_tag
     api_fetcher = InstagramInterface.new(@user_id, related_tag)
+    puts "running fetch_and_save_data_for_single_tag for RELATED TAG: #{related_tag}"
     result = fetch_and_save_data_for_single_tag(api_fetcher, related_tag)
 
     if result != :ig_status_429
@@ -99,8 +99,16 @@ class HashtagImporter
     result = fetch_and_save_data_for_single_tag(api_fetcher, @tag)
 
     if result != :ig_status_429
-      api_fetcher.hashtag_media.each do |ig_data_object|
+      all_media = api_fetcher.hashtag_media
+
+      all_media.each do |ig_data_object|
+        puts "running fetch_and_save_recent_related_images_for_tag for #{@tag} hashtag media"
         fetch_and_save_recent_related_images_for_tag ig_data_object, @tag
+      end
+
+      all_media.each do |ig_data_object|
+        puts "updating self as primary tag"
+        Hashtag.update_own_related_tags(@tag, ig_data_object)
       end
     end
   end
