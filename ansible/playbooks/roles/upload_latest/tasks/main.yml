@@ -15,6 +15,7 @@
 - name: get pid id
   command: cat {{ app_directory }}tmp/puma.pid
   register: pid_id
+  ignore_errors: True
 
 - name: attempt restarting puma
   command: kill -s SIGUSR2 {{ pid_id.stdout }}
