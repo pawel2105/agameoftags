@@ -1,1 +1,37 @@
-{{app_directory}},deploy,{{app_directory}}/config/puma/production.rb,{{app_directory}}/log/puma.log
+description "Puma Background Worker"
+stop on (stopping puma-manager or runlevel [06])
+setuid deploy
+setgid deploy
+respawn
+respawn limit 3 30
+instance /home/deploy/agameoftags
+script
+
+exec /bin/bash <<'EOT'
+  # set HOME to the setuid user's home, there doesn't seem to be a better, portable way
+  export HOME="$(eval echo ~$(id -un))"
+
+  if [ -d "/usr/local/rbenv/bin" ]; then
+    export PATH="/usr/local/rbenv/bin:/usr/local/rbenv/shims:$PATH"
+  elif [ -d "$HOME/.rbenv/bin" ]; then
+    export PATH="$HOME/.rbenv/bin:$HOME/.rbenv/shims:$PATH"
+  elif [ -f  /etc/profile.d/rvm.sh ]; then
+    source /etc/profile.d/rvm.sh
+  elif [ -f /usr/local/rvm/scripts/rvm ]; then
+    source /etc/profile.d/rvm.sh
+  elif [ -f "$HOME/.rvm/scripts/rvm" ]; then
+    source "$HOME/.rvm/scripts/rvm"
+  elif [ -f /usr/local/share/chruby/chruby.sh ]; then
+    source /usr/local/share/chruby/chruby.sh
+    if [ -f /usr/local/share/chruby/auto.sh ]; then
+      source /usr/local/share/chruby/auto.sh
+    fi
+    # if you aren't using auto, set your version here
+    # chruby 2.0.0
+  fi
+
+  cd /home/deploy/agameoftags
+  logger -t puma "Starting server: /home/deploy/agameoftags"
+  exec bundle exec puma -C /home/deploy/agameoftags/config/puma.rb
+EOT
+end script
