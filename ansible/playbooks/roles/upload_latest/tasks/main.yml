@@ -16,6 +16,14 @@
   command: cat {{ app_directory }}tmp/puma.pid
   register: pid_id
 
-- name: restart puma
+- name: attempt restarting puma
   command: kill -s SIGUSR2 {{ pid_id.stdout }}
   notify: restart nginx
+  register: result
+  ignore_errors: True
+
+- name: attempt starting puma
+  command: bash -lc "RAILS_ENV=production bundle exec puma -C config/puma/production.rb -d" chdir={{ app_directory}}
+  notify: restart nginx
+  when: result|failed
+  ignore_errors: yes
