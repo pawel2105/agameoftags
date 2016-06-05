@@ -29,14 +29,9 @@ class InstagramInterface
 
   def handle_instagram_api_error error
     response = error.io
-    status = response.status
-
-    puts "ERROR response: #{response}"
+    status   = response.status
     puts "ERROR status: #{status}"
-
-    if status.include?(429) || status.include?('429')
-      return :ig_status_429
-    end
+    return :ig_status_429 if (status.include?(429) || status.include?('429'))
   end
 
   def real_instagram_result tag
@@ -54,7 +49,7 @@ class InstagramInterface
     results_list = []
 
     begin
-      puts "\n\nMEDIA RESULT ATTEMPT\n\n"
+      puts "\n\nMEDIA RESULT ATTEMPT for #{@tag}\n\n"
       response = open("https://api.instagram.com/v1/tags/#{@tag}/media/recent?access_token=#{@token}").read
       response_object = JSON.parse(response)
 

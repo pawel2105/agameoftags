@@ -6,9 +6,10 @@
 #  user_id          :integer
 #  query_terms      :text             default("{}"), is an Array
 #  complete         :boolean          default("false")
+#  complete_queries :integer          default("0")
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  complete_queries :integer          default("0")
+#  job_ids          :text             default("{}"), is an Array
 #
 
 class RequestBatch < ActiveRecord::Base
@@ -22,12 +23,13 @@ class RequestBatch < ActiveRecord::Base
     request   = RequestBatch.find(request_id)
     new_count = request.complete_queries + 1
     request.update(complete_queries: new_count)
-    request.mark_as_complete! if new_count == 3
   end
 
   def mark_as_complete!
-    update_attributes(complete: true)
-    notify_subscriber
+    if complete_queries == 3
+      update_attributes(complete: true)
+      notify_subscriber
+    end
   end
 
   def notify_subscriber

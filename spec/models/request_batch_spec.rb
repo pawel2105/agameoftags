@@ -9,6 +9,7 @@
 #  complete_queries :integer          default("0")
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
+#  job_ids          :text             default("{}"), is an Array
 #
 
 describe RequestBatch do

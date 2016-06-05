@@ -6,9 +6,10 @@
 #  user_id          :integer
 #  query_terms      :text             default("{}"), is an Array
 #  complete         :boolean          default("false")
+#  complete_queries :integer          default("0")
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  complete_queries :integer          default("0")
+#  job_ids          :text             default("{}"), is an Array
 #
 
 FactoryGirl.define do

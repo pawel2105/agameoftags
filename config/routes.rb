@@ -1,6 +1,12 @@
+require 'sidekiq/web'
+
+
 Rails.application.routes.draw do
-  require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
+  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+    username == 'pawel' && password == 'sidekiq protection 57&'
+  end if Rails.env.production?
+
+  mount Sidekiq::Web, at: "/sidekiq"
 
   root 'home#intro'
 

@@ -2,24 +2,21 @@ class QueriesController < ApplicationController
   before_action :fetch_current_user
   before_action :bounce_guests
   before_action :prepare_results
-  before_action :prepare_hashtags
+  before_action :prepare_hashtags, only: [:search]
   before_action :ensure_search_is_allowed, only: [:search]
 
   def new
   end
 
   def search
-    request_batch = record_batch_request
-
+    batch_id = record_batch_request
     @query_tags.each do |tag|
-      @results << HashtagImporter.fetch_hashtag(tag, @current_user.id, request_batch)
+      checker = ImportChecker.new(tag, batch_id)
+      result  = checker.determine_import_action
+      PrimaryHashtagWorker.perform_async(tag, @current_user.id, batch_id) if result == :run_search
     end
 
-    if !@results.include?(:instagram_query_in_progress)
-      return redirect_to query_waiting_path
-    else
-      return redirect_to query_waiting_path
-    end
+    return redirect_to query_waiting_path
   end
 
   def waiting
@@ -43,9 +40,9 @@ class QueriesController < ApplicationController
   end
 
   def prepare_hashtags
-    one = params["hashtag_one"]
-    two = params["hashtag_two"]
-    three = params["hashtag_three"]
+    one = params["hashtag_one"].gsub(/#/,'')
+    two = params["hashtag_two"].gsub(/#/,'')
+    three = params["hashtag_three"].gsub(/#/,'')
     @query_tags = [one, two, three].uniq.compact
   end
 end

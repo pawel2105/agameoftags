@@ -19,6 +19,15 @@ class Hashtag < ActiveRecord::Base
 
   after_create :add_timeslots
 
+  def self.import_data_hash tag, data_hash
+    data_hash.each do |obj|
+      if obj[0] == 'data'
+        media_count = obj[1][:media_count] || obj[1]['media_count']
+        Hashtag.update_or_create(tag, media_count)
+      end
+    end
+  end
+
   def self.update_or_create name, count
     if self.where(label: name).any?
       self.where(label: name).first.update(total_count_on_ig: count)
