@@ -53,6 +53,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
+    chronic (0.10.2)
     cliver (0.3.2)
     concurrent-ruby (1.0.0)
     connection_pool (2.2.0)
@@ -156,6 +157,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.5.0)
     redis (3.2.2)
+    rollbar (2.2.1)
     rspec-core (3.4.2)
       rspec-support (~> 3.4.0)
     rspec-expectations (3.4.0)
@@ -184,6 +186,11 @@ GEM
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       redis (~> 3.2, >= 3.2.1)
+    sidekiq-status (0.6.0)
+      sidekiq (>= 2.7)
+    sidekiq-unique-jobs (4.0.17)
+      sidekiq (>= 2.6)
+      thor
     sinatra (1.4.7)
       rack (~> 1.5)
       rack-protection (~> 1.4)
@@ -212,6 +219,8 @@ GEM
     websocket-driver (0.6.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    whenever (0.9.3)
+      chronic (>= 0.6.3)
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -235,13 +244,17 @@ DEPENDENCIES
   puma
   quiet_assets
   rails (= 4.2.5.1)
+  rollbar (~> 2.2.1)
   rspec-rails
   sass-rails (~> 5.0)
   sidekiq
+  sidekiq-status
+  sidekiq-unique-jobs
   sinatra
   timecop
   uglifier (>= 1.3.0)
   web-console (~> 2.0)
+  whenever
 
 BUNDLED WITH
    1.11.2

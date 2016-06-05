@@ -9,9 +9,13 @@ gem 'omniauth-instagram'
 gem 'jquery-rails'
 gem 'pg'
 gem 'puma'
-gem 'sinatra', :require => nil
+gem 'sinatra', require: false
 gem 'activerecord-import', require: false
 gem 'sidekiq'
+gem 'sidekiq-unique-jobs'
+gem 'sidekiq-status'
+gem 'whenever'
+gem 'rollbar', '~> 2.2.1'
 
 group :development do
   gem 'web-console', '~> 2.0'
