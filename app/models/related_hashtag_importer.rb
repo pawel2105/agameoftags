@@ -24,7 +24,7 @@ class RelatedHashtagImporter
   def push_job_id_to_batch job_id
     @batch = RequestBatch.find(@batch_id)
     old_job_ids = @batch.job_ids
-    old_job_ids.push job_id
+    old_job_ids.push job_id if job_id
     @batch.update_attributes(job_ids: old_job_ids)
   end
 end
