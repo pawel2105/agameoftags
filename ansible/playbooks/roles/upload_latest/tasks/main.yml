@@ -13,7 +13,7 @@
   command: bash -lc "RAILS_ENV=production bundle exec rake assets:precompile" chdir={{app_directory}}
 
 - name: get pid id
-  command: cat {{ app_directory }}tmp/puma.pid
+  command: cat {{ app_directory }}tmp/puma/pid
   register: pid_id
   ignore_errors: True
 
@@ -28,3 +28,16 @@
   notify: restart nginx
   when: result|failed
   ignore_errors: yes
+
+- name: get sidekiq pid
+  command: cat {{ app_directory }}tmp/pids/sidekiq.pid
+  register: sidekiq_pid
+
+- name: stop accepting sidekiq jobs
+  command: bash -lc "kill -USR1 {{sidekiq_pid.stdout}}"
+
+- name: stop sidekiq
+  command: bash -lc "kill -TERM {{sidekiq_pid.stdout}}"
+
+- name: start sidekiq
+  command: bash -lc "bundle exec sidekiq -d -L log/sidekiq.log -C config/sidekiq.yml -e production" chdir={{app_directory}}
