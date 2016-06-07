@@ -13,7 +13,7 @@ namespace :batches do
         statuses.push status
       end
 
-      if statuses.uniq.compact == ['complete']
+      if (statuses.uniq.compact == ['complete'] || statuses.uniq.compact == [])
         batch.mark_as_complete!
       end
     end
