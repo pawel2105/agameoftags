@@ -2,3 +2,7 @@
   apt: pkg={{ item }} state=installed update-cache=yes
   with_items: "system_packages"
   sudo: yes
+
+- name: install unattended-upgrades
+  apt: name=unattended-upgrades state=present
+  sudo: yes
